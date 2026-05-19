@@ -49,6 +49,8 @@ apis:
         url: https://github.com/agilecrm/rest-api/blob/master/README.md
 
 common:
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/agile-crm
   - type: Website
     url: https://www.agilecrm.com
   - type: Documentation
