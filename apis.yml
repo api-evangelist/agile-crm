@@ -10,7 +10,7 @@ description: >-
   tasks, and tickets using HTTP Basic authentication with an email and API
   key.
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
   - CRM
   - Sales Automation
