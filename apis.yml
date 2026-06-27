@@ -57,7 +57,7 @@ common:
     url: https://www.agilecrm.com/api
   - type: Pricing
     url: https://www.agilecrm.com/pricing
-  - type: SignUp
+  - type: Signup
     url: https://www.agilecrm.com/signup
 maintainers:
   - FN: Kin Lane
