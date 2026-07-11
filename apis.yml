@@ -49,6 +49,10 @@ apis:
         url: https://github.com/agilecrm/rest-api/blob/master/README.md
 
 common:
+  - type: DomainSecurity
+    url: security/agile-crm-domain-security.yml
+  - type: Authentication
+    url: authentication/agile-crm-authentication.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/agile-crm
   - type: Website
@@ -59,6 +63,8 @@ common:
     url: https://www.agilecrm.com/pricing
   - type: Signup
     url: https://www.agilecrm.com/signup
+  - url: https://www.agilecrm.com/blog/feed/
+    type: Blog
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

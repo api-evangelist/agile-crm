@@ -1,0 +1,13 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/agile-crm-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: BasicAuth
+  type: http
+  scheme: basic
+  description: HTTP Basic auth - username is account email, password is REST client API key.
+  sources:
+  - openapi/agile-crm-openapi.yml
