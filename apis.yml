@@ -49,6 +49,8 @@ apis:
         url: https://github.com/agilecrm/rest-api/blob/master/README.md
 
 common:
+  - type: AgenticAccess
+    url: agentic-access/agile-crm-agentic-access.yml
   - type: DomainSecurity
     url: security/agile-crm-domain-security.yml
   - type: Authentication
