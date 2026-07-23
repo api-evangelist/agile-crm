@@ -1,0 +1,147 @@
+openapi: 3.1.0
+info:
+  title: Agile CRM REST Campaigns Deals API
+  version: 1.0.0
+  description: HTTPS-only REST API for managing contacts, companies, deals (opportunities), campaigns, tasks, events, notes, tracks, tickets, and documents in Agile CRM. Authentication is HTTP Basic with account email as username and REST client API key as password.
+  contact:
+    name: Agile CRM
+    url: https://www.agilecrm.com/api
+servers:
+- url: https://{domain}.agilecrm.com/dev
+  description: Tenant-scoped base URL
+  variables:
+    domain:
+      default: mydomain
+      description: Your Agile CRM tenant subdomain
+security:
+- BasicAuth: []
+tags:
+- name: Deals
+paths:
+  /api/opportunity:
+    get:
+      tags:
+      - Deals
+      summary: List all deals
+      responses:
+        '200':
+          description: Deals
+    post:
+      tags:
+      - Deals
+      summary: Create a deal
+      responses:
+        '200':
+          description: Deal created
+  /api/opportunity/{id}:
+    get:
+      tags:
+      - Deals
+      summary: Get deal by ID
+      parameters:
+      - $ref: '#/components/parameters/Id'
+      responses:
+        '200':
+          description: Deal
+    delete:
+      tags:
+      - Deals
+      summary: Delete a deal
+      parameters:
+      - $ref: '#/components/parameters/Id'
+      responses:
+        '204':
+          description: Deleted
+  /api/opportunity/partial-update:
+    put:
+      tags:
+      - Deals
+      summary: Partially update a deal
+      responses:
+        '200':
+          description: Deal updated
+  /api/opportunity/email/{email}:
+    post:
+      tags:
+      - Deals
+      summary: Create a deal for a contact by email
+      parameters:
+      - name: email
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Deal created
+  /api/opportunity/bulk:
+    post:
+      tags:
+      - Deals
+      summary: Bulk delete deals
+      responses:
+        '200':
+          description: Deals deleted
+  /api/opportunity/byMilestone:
+    get:
+      tags:
+      - Deals
+      summary: Get deals grouped by milestone
+      responses:
+        '200':
+          description: Deals by milestone
+  /api/opportunity/byPipeline/based:
+    get:
+      tags:
+      - Deals
+      summary: Retrieve deals by pipeline
+      responses:
+        '200':
+          description: Deals
+  /api/opportunity/based:
+    get:
+      tags:
+      - Deals
+      summary: Get deals from a track
+      responses:
+        '200':
+          description: Deals
+  /api/contacts/{id}/deals:
+    get:
+      tags:
+      - Deals
+      summary: Get deals linked to a contact
+      parameters:
+      - $ref: '#/components/parameters/Id'
+      responses:
+        '200':
+          description: Deals
+  /api/opportunity/my/deals:
+    get:
+      tags:
+      - Deals
+      summary: Retrieve the calling user's deals
+      responses:
+        '200':
+          description: Deals
+  /api/opportunity/partial-update/delete-contact:
+    put:
+      tags:
+      - Deals
+      summary: Remove contacts from a deal
+      responses:
+        '200':
+          description: Updated
+components:
+  parameters:
+    Id:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic auth - username is account email, password is REST client API key.

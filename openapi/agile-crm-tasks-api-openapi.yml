@@ -1,0 +1,128 @@
+openapi: 3.1.0
+info:
+  title: Agile CRM REST Campaigns Tasks API
+  version: 1.0.0
+  description: HTTPS-only REST API for managing contacts, companies, deals (opportunities), campaigns, tasks, events, notes, tracks, tickets, and documents in Agile CRM. Authentication is HTTP Basic with account email as username and REST client API key as password.
+  contact:
+    name: Agile CRM
+    url: https://www.agilecrm.com/api
+servers:
+- url: https://{domain}.agilecrm.com/dev
+  description: Tenant-scoped base URL
+  variables:
+    domain:
+      default: mydomain
+      description: Your Agile CRM tenant subdomain
+security:
+- BasicAuth: []
+tags:
+- name: Tasks
+paths:
+  /api/tasks:
+    get:
+      tags:
+      - Tasks
+      summary: List all tasks
+      responses:
+        '200':
+          description: Tasks
+    post:
+      tags:
+      - Tasks
+      summary: Create a task
+      responses:
+        '200':
+          description: Task created
+  /api/tasks/pending/{num_days}:
+    get:
+      tags:
+      - Tasks
+      summary: Get pending tasks by days
+      parameters:
+      - name: num_days
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Tasks
+  /api/tasks/based:
+    get:
+      tags:
+      - Tasks
+      summary: Retrieve tasks with filters
+      responses:
+        '200':
+          description: Tasks
+  /api/tasks/{id}:
+    get:
+      tags:
+      - Tasks
+      summary: Get task by ID
+      parameters:
+      - $ref: '#/components/parameters/Id'
+      responses:
+        '200':
+          description: Task
+    put:
+      tags:
+      - Tasks
+      summary: Partially update a task
+      parameters:
+      - $ref: '#/components/parameters/Id'
+      responses:
+        '200':
+          description: Task updated
+    delete:
+      tags:
+      - Tasks
+      summary: Delete a task
+      parameters:
+      - $ref: '#/components/parameters/Id'
+      responses:
+        '204':
+          description: Task deleted
+  /api/tasks/email/{email}:
+    post:
+      tags:
+      - Tasks
+      summary: Create a task for a contact by email
+      parameters:
+      - name: email
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Task created
+  /api/contacts/{contact_id}/tasks:
+    get:
+      tags:
+      - Tasks
+      summary: Get tasks for a contact
+      parameters:
+      - $ref: '#/components/parameters/ContactId'
+      responses:
+        '200':
+          description: Tasks
+components:
+  parameters:
+    ContactId:
+      name: contact_id
+      in: path
+      required: true
+      schema:
+        type: string
+    Id:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic auth - username is account email, password is REST client API key.

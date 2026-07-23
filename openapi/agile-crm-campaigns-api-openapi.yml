@@ -1,0 +1,53 @@
+openapi: 3.1.0
+info:
+  title: Agile CRM REST Campaigns API
+  version: 1.0.0
+  description: HTTPS-only REST API for managing contacts, companies, deals (opportunities), campaigns, tasks, events, notes, tracks, tickets, and documents in Agile CRM. Authentication is HTTP Basic with account email as username and REST client API key as password.
+  contact:
+    name: Agile CRM
+    url: https://www.agilecrm.com/api
+servers:
+- url: https://{domain}.agilecrm.com/dev
+  description: Tenant-scoped base URL
+  variables:
+    domain:
+      default: mydomain
+      description: Your Agile CRM tenant subdomain
+security:
+- BasicAuth: []
+tags:
+- name: Campaigns
+paths:
+  /api/campaigns/enroll/email:
+    post:
+      tags:
+      - Campaigns
+      summary: Add a contact to a campaign
+      responses:
+        '200':
+          description: Contact enrolled
+  /api/workflows/remove-active-subscriber/{workflowId}/{contactId}:
+    delete:
+      tags:
+      - Campaigns
+      summary: Remove contact from a campaign workflow
+      parameters:
+      - name: workflowId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: contactId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Removed
+components:
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic auth - username is account email, password is REST client API key.

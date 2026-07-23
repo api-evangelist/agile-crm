@@ -1,0 +1,215 @@
+openapi: 3.1.0
+info:
+  title: Agile CRM REST Campaigns Contacts API
+  version: 1.0.0
+  description: HTTPS-only REST API for managing contacts, companies, deals (opportunities), campaigns, tasks, events, notes, tracks, tickets, and documents in Agile CRM. Authentication is HTTP Basic with account email as username and REST client API key as password.
+  contact:
+    name: Agile CRM
+    url: https://www.agilecrm.com/api
+servers:
+- url: https://{domain}.agilecrm.com/dev
+  description: Tenant-scoped base URL
+  variables:
+    domain:
+      default: mydomain
+      description: Your Agile CRM tenant subdomain
+security:
+- BasicAuth: []
+tags:
+- name: Contacts
+paths:
+  /api/contacts:
+    get:
+      tags:
+      - Contacts
+      summary: List contacts ordered by creation time
+      responses:
+        '200':
+          description: Contact list
+    post:
+      tags:
+      - Contacts
+      summary: Create a new contact (or company when type is COMPANY)
+      responses:
+        '200':
+          description: Contact created
+  /api/contacts/{id}:
+    get:
+      tags:
+      - Contacts
+      summary: Get a contact by ID
+      parameters:
+      - $ref: '#/components/parameters/Id'
+      responses:
+        '200':
+          description: Contact details
+    delete:
+      tags:
+      - Contacts
+      summary: Delete a contact
+      parameters:
+      - $ref: '#/components/parameters/Id'
+      responses:
+        '204':
+          description: Contact deleted
+  /api/contacts/edit-properties:
+    put:
+      tags:
+      - Contacts
+      summary: Partially update contact properties
+      responses:
+        '200':
+          description: Properties updated
+  /api/contacts/edit/lead-score:
+    put:
+      tags:
+      - Contacts
+      summary: Modify lead score
+      responses:
+        '200':
+          description: Lead score updated
+  /api/contacts/edit/add-star:
+    put:
+      tags:
+      - Contacts
+      summary: Update star rating
+      responses:
+        '200':
+          description: Star rating updated
+  /api/contacts/edit/tags:
+    put:
+      tags:
+      - Contacts
+      summary: Add tags to a contact
+      responses:
+        '200':
+          description: Tags added
+  /api/contacts/delete/tags:
+    put:
+      tags:
+      - Contacts
+      summary: Remove tags from a contact
+      responses:
+        '200':
+          description: Tags removed
+  /api/contacts/search/email/{email}:
+    get:
+      tags:
+      - Contacts
+      summary: Find a contact by email
+      parameters:
+      - name: email
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Contact found
+  /api/contacts/search/email:
+    post:
+      tags:
+      - Contacts
+      summary: Search multiple contacts by email
+      responses:
+        '200':
+          description: Contacts found
+  /api/search:
+    get:
+      tags:
+      - Contacts
+      summary: Search contacts and companies by keyword
+      responses:
+        '200':
+          description: Search results
+  /api/contacts/email/tags/add:
+    post:
+      tags:
+      - Contacts
+      summary: Add tags via email
+      responses:
+        '200':
+          description: Tags added
+  /api/contacts/email/tags/delete:
+    post:
+      tags:
+      - Contacts
+      summary: Remove tags via email
+      responses:
+        '200':
+          description: Tags removed
+  /api/contacts/add-score:
+    post:
+      tags:
+      - Contacts
+      summary: Adjust lead score
+      responses:
+        '200':
+          description: Score adjusted
+  /api/contacts/{contact_id}/tasks/sort:
+    get:
+      tags:
+      - Contacts
+      summary: Get associated tasks for a contact
+      parameters:
+      - $ref: '#/components/parameters/ContactId'
+      responses:
+        '200':
+          description: Tasks
+  /api/contacts/add/property:
+    post:
+      tags:
+      - Contacts
+      summary: Update a single contact property
+      responses:
+        '200':
+          description: Property updated
+  /api/contacts/change-owner:
+    post:
+      tags:
+      - Contacts
+      summary: Reassign contact owner
+      responses:
+        '200':
+          description: Owner reassigned
+  /api/contacts/search/phonenumber/{phone}:
+    get:
+      tags:
+      - Contacts
+      summary: Locate a contact by phone number
+      parameters:
+      - name: phone
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Contact found
+  /api/filters/filter/dynamic-filter:
+    post:
+      tags:
+      - Contacts
+      summary: Filter contacts dynamically
+      responses:
+        '200':
+          description: Filtered contacts
+components:
+  parameters:
+    ContactId:
+      name: contact_id
+      in: path
+      required: true
+      schema:
+        type: string
+    Id:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic auth - username is account email, password is REST client API key.

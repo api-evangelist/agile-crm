@@ -1,0 +1,111 @@
+openapi: 3.1.0
+info:
+  title: Agile CRM REST Campaigns Notes API
+  version: 1.0.0
+  description: HTTPS-only REST API for managing contacts, companies, deals (opportunities), campaigns, tasks, events, notes, tracks, tickets, and documents in Agile CRM. Authentication is HTTP Basic with account email as username and REST client API key as password.
+  contact:
+    name: Agile CRM
+    url: https://www.agilecrm.com/api
+servers:
+- url: https://{domain}.agilecrm.com/dev
+  description: Tenant-scoped base URL
+  variables:
+    domain:
+      default: mydomain
+      description: Your Agile CRM tenant subdomain
+security:
+- BasicAuth: []
+tags:
+- name: Notes
+paths:
+  /api/notes:
+    post:
+      tags:
+      - Notes
+      summary: Create a note and relate to contacts
+      responses:
+        '200':
+          description: Note created
+  /api/contacts/email/note/add:
+    post:
+      tags:
+      - Notes
+      summary: Add a note via email
+      responses:
+        '200':
+          description: Note added
+  /api/contacts/{contact_id}/notes:
+    get:
+      tags:
+      - Notes
+      summary: Get notes for a contact
+      parameters:
+      - $ref: '#/components/parameters/ContactId'
+      responses:
+        '200':
+          description: Notes
+  /api/contacts/{contact_id}/notes/{note_id}:
+    delete:
+      tags:
+      - Notes
+      summary: Remove a contact note
+      parameters:
+      - $ref: '#/components/parameters/ContactId'
+      - name: note_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Deleted
+  /api/opportunity/deals/notes:
+    post:
+      tags:
+      - Notes
+      summary: Create a deal note
+      responses:
+        '200':
+          description: Note created
+    put:
+      tags:
+      - Notes
+      summary: Update a deal note
+      responses:
+        '200':
+          description: Note updated
+  /api/opportunity/{deal_id}/notes:
+    get:
+      tags:
+      - Notes
+      summary: Get deal notes
+      parameters:
+      - name: deal_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Notes
+  /api/contacts/notes/bulk:
+    post:
+      tags:
+      - Notes
+      summary: Bulk delete notes
+      responses:
+        '200':
+          description: Notes deleted
+components:
+  parameters:
+    ContactId:
+      name: contact_id
+      in: path
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic auth - username is account email, password is REST client API key.

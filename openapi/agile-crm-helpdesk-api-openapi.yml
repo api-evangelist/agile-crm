@@ -1,0 +1,86 @@
+openapi: 3.1.0
+info:
+  title: Agile CRM REST Campaigns HelpDesk API
+  version: 1.0.0
+  description: HTTPS-only REST API for managing contacts, companies, deals (opportunities), campaigns, tasks, events, notes, tracks, tickets, and documents in Agile CRM. Authentication is HTTP Basic with account email as username and REST client API key as password.
+  contact:
+    name: Agile CRM
+    url: https://www.agilecrm.com/api
+servers:
+- url: https://{domain}.agilecrm.com/dev
+  description: Tenant-scoped base URL
+  variables:
+    domain:
+      default: mydomain
+      description: Your Agile CRM tenant subdomain
+security:
+- BasicAuth: []
+tags:
+- name: HelpDesk
+paths:
+  /api/helpdesk/tickets:
+    get:
+      tags:
+      - HelpDesk
+      summary: Retrieve all tickets
+      responses:
+        '200':
+          description: Tickets
+    post:
+      tags:
+      - HelpDesk
+      summary: Create a ticket
+      responses:
+        '200':
+          description: Ticket created
+  /api/helpdesk/tickets/{id}:
+    delete:
+      tags:
+      - HelpDesk
+      summary: Delete a ticket
+      parameters:
+      - $ref: '#/components/parameters/Id'
+      responses:
+        '204':
+          description: Ticket deleted
+  /api/helpdesk/filters:
+    get:
+      tags:
+      - HelpDesk
+      summary: Get filter IDs
+      responses:
+        '200':
+          description: Filters
+  /api/helpdesk/tickets/{id}/messages:
+    get:
+      tags:
+      - HelpDesk
+      summary: Get ticket messages
+      parameters:
+      - $ref: '#/components/parameters/Id'
+      responses:
+        '200':
+          description: Messages
+  /api/helpdesk/tickets/{id}/notes:
+    post:
+      tags:
+      - HelpDesk
+      summary: Add note to a ticket
+      parameters:
+      - $ref: '#/components/parameters/Id'
+      responses:
+        '200':
+          description: Note added
+components:
+  parameters:
+    Id:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic auth - username is account email, password is REST client API key.
