@@ -10,7 +10,19 @@ description: >-
   tasks, and tickets using HTTP Basic authentication with an email and API
   key.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/agile-crm.png
 tags:
   - CRM
   - Sales Automation
@@ -24,30 +36,128 @@ created: '2026-05-11'
 modified: '2026-05-11'
 specificationVersion: '0.19'
 apis:
-  - aid: agile-crm:rest-api
-    name: Agile CRM REST API
-    description: >-
-      HTTPS-only REST API for managing contacts, companies, deals, campaigns,
-      tasks, notes, and tickets in Agile CRM. Authentication uses HTTP Basic
-      auth with the account email as username and the REST client API key as
-      password.
-    humanURL: https://www.agilecrm.com/api
-    baseURL: https://{domain}.agilecrm.com/dev
-    tags:
-      - Contacts
-      - Companies
-      - Deals
-      - Campaigns
-      - Tasks
-      - Tickets
-    properties:
-      - type: Documentation
-        url: https://www.agilecrm.com/api
-      - type: GitHub
-        url: https://github.com/agilecrm/rest-api
-      - type: README
-        url: https://github.com/agilecrm/rest-api/blob/master/README.md
-
+- aid: agile-crm:rest-api
+  name: Agile CRM REST API
+  description: >-
+    HTTPS-only REST API for managing contacts, companies, deals, campaigns, tasks, notes, and tickets
+    in Agile CRM. Authentication uses HTTP Basic auth with the account email as username and the REST
+    client API key as password.
+  humanURL: https://www.agilecrm.com/api
+  baseURL: https://{domain}.agilecrm.com/dev
+  tags:
+  - Contacts
+  - Companies
+  - Deals
+  - Campaigns
+  - Tasks
+  - Tickets
+  properties:
+  - type: Documentation
+    url: https://www.agilecrm.com/api
+  - type: GitHub
+    url: https://github.com/agilecrm/rest-api
+  - type: README
+    url: https://github.com/agilecrm/rest-api/blob/master/README.md
+- aid: agile-crm:agile-crm-campaigns-api
+  name: Agile CRM Campaigns API
+  description: The Campaigns API from Agile CRM — 2 operation(s) for campaigns.
+  humanURL: https://www.agilecrm.com/api
+  baseURL: https://{domain}.agilecrm.com/dev
+  tags:
+  - Campaigns
+  properties:
+  - type: OpenAPI
+    url: openapi/agile-crm-campaigns-api-openapi.yml
+- aid: agile-crm:agile-crm-companies-api
+  name: Agile CRM Companies API
+  description: The Companies API from Agile CRM — 1 operation(s) for companies.
+  humanURL: https://www.agilecrm.com/api
+  baseURL: https://{domain}.agilecrm.com/dev
+  tags:
+  - Companies
+  properties:
+  - type: OpenAPI
+    url: openapi/agile-crm-companies-api-openapi.yml
+- aid: agile-crm:agile-crm-contacts-api
+  name: Agile CRM Contacts API
+  description: The Contacts API from Agile CRM — 18 operation(s) for contacts.
+  humanURL: https://www.agilecrm.com/api
+  baseURL: https://{domain}.agilecrm.com/dev
+  tags:
+  - Contacts
+  properties:
+  - type: OpenAPI
+    url: openapi/agile-crm-contacts-api-openapi.yml
+- aid: agile-crm:agile-crm-deals-api
+  name: Agile CRM Deals API
+  description: The Deals API from Agile CRM — 11 operation(s) for deals.
+  humanURL: https://www.agilecrm.com/api
+  baseURL: https://{domain}.agilecrm.com/dev
+  tags:
+  - Deals
+  properties:
+  - type: OpenAPI
+    url: openapi/agile-crm-deals-api-openapi.yml
+- aid: agile-crm:agile-crm-documents-api
+  name: Agile CRM Documents API
+  description: The Documents API from Agile CRM — 2 operation(s) for documents.
+  humanURL: https://www.agilecrm.com/api
+  baseURL: https://{domain}.agilecrm.com/dev
+  tags:
+  - Documents
+  properties:
+  - type: OpenAPI
+    url: openapi/agile-crm-documents-api-openapi.yml
+- aid: agile-crm:agile-crm-events-api
+  name: Agile CRM Events API
+  description: The Events API from Agile CRM — 3 operation(s) for events.
+  humanURL: https://www.agilecrm.com/api
+  baseURL: https://{domain}.agilecrm.com/dev
+  tags:
+  - Events
+  properties:
+  - type: OpenAPI
+    url: openapi/agile-crm-events-api-openapi.yml
+- aid: agile-crm:agile-crm-helpdesk-api
+  name: Agile CRM HelpDesk API
+  description: The HelpDesk API from Agile CRM — 5 operation(s) for helpdesk.
+  humanURL: https://www.agilecrm.com/api
+  baseURL: https://{domain}.agilecrm.com/dev
+  tags:
+  - HelpDesk
+  properties:
+  - type: OpenAPI
+    url: openapi/agile-crm-helpdesk-api-openapi.yml
+- aid: agile-crm:agile-crm-notes-api
+  name: Agile CRM Notes API
+  description: The Notes API from Agile CRM — 7 operation(s) for notes.
+  humanURL: https://www.agilecrm.com/api
+  baseURL: https://{domain}.agilecrm.com/dev
+  tags:
+  - Notes
+  properties:
+  - type: OpenAPI
+    url: openapi/agile-crm-notes-api-openapi.yml
+- aid: agile-crm:agile-crm-tasks-api
+  name: Agile CRM Tasks API
+  description: The Tasks API from Agile CRM — 6 operation(s) for tasks.
+  humanURL: https://www.agilecrm.com/api
+  baseURL: https://{domain}.agilecrm.com/dev
+  tags:
+  - Tasks
+  properties:
+  - type: OpenAPI
+    url: openapi/agile-crm-tasks-api-openapi.yml
+- aid: agile-crm:agile-crm-tracks-api
+  name: Agile CRM Tracks API
+  description: The Tracks API from Agile CRM — 2 operation(s) for tracks.
+  humanURL: https://www.agilecrm.com/api
+  baseURL: https://{domain}.agilecrm.com/dev
+  tags:
+  - Tracks
+  properties:
+  - type: OpenAPI
+    url: openapi/agile-crm-tracks-api-openapi.yml
 common:
   - type: AgenticAccess
     url: agentic-access/agile-crm-agentic-access.yml
