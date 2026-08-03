@@ -1,0 +1,638 @@
+openapi: 3.1.0
+info:
+  title: Agile CRM REST API
+  version: "1.0.0"
+  description: >-
+    HTTPS-only REST API for managing contacts, companies, deals
+    (opportunities), campaigns, tasks, events, notes, tracks, tickets, and
+    documents in Agile CRM. Authentication is HTTP Basic with account email
+    as username and REST client API key as password.
+  contact:
+    name: Agile CRM
+    url: https://www.agilecrm.com/api
+servers:
+  - url: https://{domain}.agilecrm.com/dev
+    description: Tenant-scoped base URL
+    variables:
+      domain:
+        default: mydomain
+        description: Your Agile CRM tenant subdomain
+tags:
+  - name: Contacts
+  - name: Companies
+  - name: Campaigns
+  - name: Deals
+  - name: Notes
+  - name: Tasks
+  - name: Events
+  - name: Tracks
+  - name: HelpDesk
+  - name: Documents
+paths:
+  /api/contacts:
+    get:
+      tags: [Contacts]
+      summary: List contacts ordered by creation time
+      responses:
+        "200":
+          description: Contact list
+    post:
+      tags: [Contacts]
+      summary: Create a new contact (or company when type is COMPANY)
+      responses:
+        "200":
+          description: Contact created
+  /api/contacts/{id}:
+    get:
+      tags: [Contacts]
+      summary: Get a contact by ID
+      parameters:
+        - $ref: '#/components/parameters/Id'
+      responses:
+        "200":
+          description: Contact details
+    delete:
+      tags: [Contacts]
+      summary: Delete a contact
+      parameters:
+        - $ref: '#/components/parameters/Id'
+      responses:
+        "204":
+          description: Contact deleted
+  /api/contacts/edit-properties:
+    put:
+      tags: [Contacts]
+      summary: Partially update contact properties
+      responses:
+        "200":
+          description: Properties updated
+  /api/contacts/edit/lead-score:
+    put:
+      tags: [Contacts]
+      summary: Modify lead score
+      responses:
+        "200":
+          description: Lead score updated
+  /api/contacts/edit/add-star:
+    put:
+      tags: [Contacts]
+      summary: Update star rating
+      responses:
+        "200":
+          description: Star rating updated
+  /api/contacts/edit/tags:
+    put:
+      tags: [Contacts]
+      summary: Add tags to a contact
+      responses:
+        "200":
+          description: Tags added
+  /api/contacts/delete/tags:
+    put:
+      tags: [Contacts]
+      summary: Remove tags from a contact
+      responses:
+        "200":
+          description: Tags removed
+  /api/contacts/search/email/{email}:
+    get:
+      tags: [Contacts]
+      summary: Find a contact by email
+      parameters:
+        - name: email
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Contact found
+  /api/contacts/search/email:
+    post:
+      tags: [Contacts]
+      summary: Search multiple contacts by email
+      responses:
+        "200":
+          description: Contacts found
+  /api/search:
+    get:
+      tags: [Contacts]
+      summary: Search contacts and companies by keyword
+      responses:
+        "200":
+          description: Search results
+  /api/contacts/email/tags/add:
+    post:
+      tags: [Contacts]
+      summary: Add tags via email
+      responses:
+        "200":
+          description: Tags added
+  /api/contacts/email/tags/delete:
+    post:
+      tags: [Contacts]
+      summary: Remove tags via email
+      responses:
+        "200":
+          description: Tags removed
+  /api/contacts/add-score:
+    post:
+      tags: [Contacts]
+      summary: Adjust lead score
+      responses:
+        "200":
+          description: Score adjusted
+  /api/contacts/{contact_id}/tasks/sort:
+    get:
+      tags: [Contacts]
+      summary: Get associated tasks for a contact
+      parameters:
+        - $ref: '#/components/parameters/ContactId'
+      responses:
+        "200":
+          description: Tasks
+  /api/contacts/add/property:
+    post:
+      tags: [Contacts]
+      summary: Update a single contact property
+      responses:
+        "200":
+          description: Property updated
+  /api/contacts/change-owner:
+    post:
+      tags: [Contacts]
+      summary: Reassign contact owner
+      responses:
+        "200":
+          description: Owner reassigned
+  /api/contacts/search/phonenumber/{phone}:
+    get:
+      tags: [Contacts]
+      summary: Locate a contact by phone number
+      parameters:
+        - name: phone
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Contact found
+  /api/filters/filter/dynamic-filter:
+    post:
+      tags: [Contacts]
+      summary: Filter contacts dynamically
+      responses:
+        "200":
+          description: Filtered contacts
+  /api/contacts/companies/list:
+    post:
+      tags: [Companies]
+      summary: Retrieve company list
+      responses:
+        "200":
+          description: Companies
+  /api/campaigns/enroll/email:
+    post:
+      tags: [Campaigns]
+      summary: Add a contact to a campaign
+      responses:
+        "200":
+          description: Contact enrolled
+  /api/workflows/remove-active-subscriber/{workflowId}/{contactId}:
+    delete:
+      tags: [Campaigns]
+      summary: Remove contact from a campaign workflow
+      parameters:
+        - name: workflowId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: contactId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "204":
+          description: Removed
+  /api/opportunity:
+    get:
+      tags: [Deals]
+      summary: List all deals
+      responses:
+        "200":
+          description: Deals
+    post:
+      tags: [Deals]
+      summary: Create a deal
+      responses:
+        "200":
+          description: Deal created
+  /api/opportunity/{id}:
+    get:
+      tags: [Deals]
+      summary: Get deal by ID
+      parameters:
+        - $ref: '#/components/parameters/Id'
+      responses:
+        "200":
+          description: Deal
+    delete:
+      tags: [Deals]
+      summary: Delete a deal
+      parameters:
+        - $ref: '#/components/parameters/Id'
+      responses:
+        "204":
+          description: Deleted
+  /api/opportunity/partial-update:
+    put:
+      tags: [Deals]
+      summary: Partially update a deal
+      responses:
+        "200":
+          description: Deal updated
+  /api/opportunity/email/{email}:
+    post:
+      tags: [Deals]
+      summary: Create a deal for a contact by email
+      parameters:
+        - name: email
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Deal created
+  /api/opportunity/bulk:
+    post:
+      tags: [Deals]
+      summary: Bulk delete deals
+      responses:
+        "200":
+          description: Deals deleted
+  /api/opportunity/byMilestone:
+    get:
+      tags: [Deals]
+      summary: Get deals grouped by milestone
+      responses:
+        "200":
+          description: Deals by milestone
+  /api/opportunity/byPipeline/based:
+    get:
+      tags: [Deals]
+      summary: Retrieve deals by pipeline
+      responses:
+        "200":
+          description: Deals
+  /api/opportunity/based:
+    get:
+      tags: [Deals]
+      summary: Get deals from a track
+      responses:
+        "200":
+          description: Deals
+  /api/contacts/{id}/deals:
+    get:
+      tags: [Deals]
+      summary: Get deals linked to a contact
+      parameters:
+        - $ref: '#/components/parameters/Id'
+      responses:
+        "200":
+          description: Deals
+  /api/opportunity/my/deals:
+    get:
+      tags: [Deals]
+      summary: Retrieve the calling user's deals
+      responses:
+        "200":
+          description: Deals
+  /api/opportunity/partial-update/delete-contact:
+    put:
+      tags: [Deals]
+      summary: Remove contacts from a deal
+      responses:
+        "200":
+          description: Updated
+  /api/notes:
+    post:
+      tags: [Notes]
+      summary: Create a note and relate to contacts
+      responses:
+        "200":
+          description: Note created
+  /api/contacts/email/note/add:
+    post:
+      tags: [Notes]
+      summary: Add a note via email
+      responses:
+        "200":
+          description: Note added
+  /api/contacts/{contact_id}/notes:
+    get:
+      tags: [Notes]
+      summary: Get notes for a contact
+      parameters:
+        - $ref: '#/components/parameters/ContactId'
+      responses:
+        "200":
+          description: Notes
+  /api/contacts/{contact_id}/notes/{note_id}:
+    delete:
+      tags: [Notes]
+      summary: Remove a contact note
+      parameters:
+        - $ref: '#/components/parameters/ContactId'
+        - name: note_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "204":
+          description: Deleted
+  /api/opportunity/deals/notes:
+    post:
+      tags: [Notes]
+      summary: Create a deal note
+      responses:
+        "200":
+          description: Note created
+    put:
+      tags: [Notes]
+      summary: Update a deal note
+      responses:
+        "200":
+          description: Note updated
+  /api/opportunity/{deal_id}/notes:
+    get:
+      tags: [Notes]
+      summary: Get deal notes
+      parameters:
+        - name: deal_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Notes
+  /api/contacts/notes/bulk:
+    post:
+      tags: [Notes]
+      summary: Bulk delete notes
+      responses:
+        "200":
+          description: Notes deleted
+  /api/tasks:
+    get:
+      tags: [Tasks]
+      summary: List all tasks
+      responses:
+        "200":
+          description: Tasks
+    post:
+      tags: [Tasks]
+      summary: Create a task
+      responses:
+        "200":
+          description: Task created
+  /api/tasks/pending/{num_days}:
+    get:
+      tags: [Tasks]
+      summary: Get pending tasks by days
+      parameters:
+        - name: num_days
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Tasks
+  /api/tasks/based:
+    get:
+      tags: [Tasks]
+      summary: Retrieve tasks with filters
+      responses:
+        "200":
+          description: Tasks
+  /api/tasks/{id}:
+    get:
+      tags: [Tasks]
+      summary: Get task by ID
+      parameters:
+        - $ref: '#/components/parameters/Id'
+      responses:
+        "200":
+          description: Task
+    put:
+      tags: [Tasks]
+      summary: Partially update a task
+      parameters:
+        - $ref: '#/components/parameters/Id'
+      responses:
+        "200":
+          description: Task updated
+    delete:
+      tags: [Tasks]
+      summary: Delete a task
+      parameters:
+        - $ref: '#/components/parameters/Id'
+      responses:
+        "204":
+          description: Task deleted
+  /api/tasks/email/{email}:
+    post:
+      tags: [Tasks]
+      summary: Create a task for a contact by email
+      parameters:
+        - name: email
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Task created
+  /api/contacts/{contact_id}/tasks:
+    get:
+      tags: [Tasks]
+      summary: Get tasks for a contact
+      parameters:
+        - $ref: '#/components/parameters/ContactId'
+      responses:
+        "200":
+          description: Tasks
+  /api/events:
+    get:
+      tags: [Events]
+      summary: List events
+      responses:
+        "200":
+          description: Events
+    post:
+      tags: [Events]
+      summary: Create an event
+      responses:
+        "200":
+          description: Event created
+  /api/contacts/{contact_id}/events:
+    get:
+      tags: [Events]
+      summary: Get events for a contact
+      parameters:
+        - $ref: '#/components/parameters/ContactId'
+      responses:
+        "200":
+          description: Events
+  /api/events/{id}:
+    put:
+      tags: [Events]
+      summary: Update an event
+      parameters:
+        - $ref: '#/components/parameters/Id'
+      responses:
+        "200":
+          description: Event updated
+    delete:
+      tags: [Events]
+      summary: Delete an event
+      parameters:
+        - $ref: '#/components/parameters/Id'
+      responses:
+        "204":
+          description: Event deleted
+  /api/tracks:
+    get:
+      tags: [Tracks]
+      summary: List tracks
+      responses:
+        "200":
+          description: Tracks
+    post:
+      tags: [Tracks]
+      summary: Create a track
+      responses:
+        "200":
+          description: Track created
+  /api/tracks/{id}:
+    put:
+      tags: [Tracks]
+      summary: Update a track
+      parameters:
+        - $ref: '#/components/parameters/Id'
+      responses:
+        "200":
+          description: Track updated
+    delete:
+      tags: [Tracks]
+      summary: Delete a track
+      parameters:
+        - $ref: '#/components/parameters/Id'
+      responses:
+        "204":
+          description: Track deleted
+  /api/helpdesk/tickets:
+    get:
+      tags: [HelpDesk]
+      summary: Retrieve all tickets
+      responses:
+        "200":
+          description: Tickets
+    post:
+      tags: [HelpDesk]
+      summary: Create a ticket
+      responses:
+        "200":
+          description: Ticket created
+  /api/helpdesk/tickets/{id}:
+    delete:
+      tags: [HelpDesk]
+      summary: Delete a ticket
+      parameters:
+        - $ref: '#/components/parameters/Id'
+      responses:
+        "204":
+          description: Ticket deleted
+  /api/helpdesk/filters:
+    get:
+      tags: [HelpDesk]
+      summary: Get filter IDs
+      responses:
+        "200":
+          description: Filters
+  /api/helpdesk/tickets/{id}/messages:
+    get:
+      tags: [HelpDesk]
+      summary: Get ticket messages
+      parameters:
+        - $ref: '#/components/parameters/Id'
+      responses:
+        "200":
+          description: Messages
+  /api/helpdesk/tickets/{id}/notes:
+    post:
+      tags: [HelpDesk]
+      summary: Add note to a ticket
+      parameters:
+        - $ref: '#/components/parameters/Id'
+      responses:
+        "200":
+          description: Note added
+  /api/contacts/{contact_id}/documents:
+    get:
+      tags: [Documents]
+      summary: Get contact documents
+      parameters:
+        - $ref: '#/components/parameters/ContactId'
+      responses:
+        "200":
+          description: Documents
+    post:
+      tags: [Documents]
+      summary: Create a document for a contact
+      parameters:
+        - $ref: '#/components/parameters/ContactId'
+      responses:
+        "200":
+          description: Document created
+  /api/contacts/{contact_id}/documents/{doc_id}:
+    put:
+      tags: [Documents]
+      summary: Update a contact document
+      parameters:
+        - $ref: '#/components/parameters/ContactId'
+        - name: doc_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Document updated
+components:
+  parameters:
+    Id:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+    ContactId:
+      name: contact_id
+      in: path
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic auth - username is account email, password is REST client API key.
+security:
+  - BasicAuth: []

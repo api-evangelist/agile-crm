@@ -1,0 +1,32 @@
+{
+  "provider": "agile-crm",
+  "sources": [
+    "agile-crm-campaigns-api-openapi.yml",
+    "agile-crm-companies-api-openapi.yml",
+    "agile-crm-contacts-api-openapi.yml",
+    "agile-crm-deals-api-openapi.yml",
+    "agile-crm-documents-api-openapi.yml",
+    "agile-crm-events-api-openapi.yml",
+    "agile-crm-helpdesk-api-openapi.yml",
+    "agile-crm-notes-api-openapi.yml",
+    "agile-crm-tasks-api-openapi.yml",
+    "agile-crm-tracks-api-openapi.yml"
+  ],
+  "outputs": [
+    "agile-crm-campaigns-api-openapi.yml",
+    "agile-crm-companies-api-openapi.yml",
+    "agile-crm-contacts-api-openapi.yml",
+    "agile-crm-deals-api-openapi.yml",
+    "agile-crm-documents-api-openapi.yml",
+    "agile-crm-events-api-openapi.yml",
+    "agile-crm-helpdesk-api-openapi.yml",
+    "agile-crm-notes-api-openapi.yml",
+    "agile-crm-tasks-api-openapi.yml",
+    "agile-crm-tracks-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
