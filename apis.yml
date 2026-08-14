@@ -33,7 +33,7 @@ tags:
 url: >-
   https://raw.githubusercontent.com/api-evangelist/agile-crm/refs/heads/main/apis.yml
 created: '2026-05-11'
-modified: '2026-05-11'
+modified: '2026-08-13'
 specificationVersion: '0.19'
 apis:
 - aid: agile-crm:rest-api
@@ -58,6 +58,8 @@ apis:
     url: https://github.com/agilecrm/rest-api
   - type: README
     url: https://github.com/agilecrm/rest-api/blob/master/README.md
+  - type: APIReference
+    url: https://github.com/agilecrm/rest-api/blob/master/README.md
 - aid: agile-crm:agile-crm-campaigns-api
   name: Agile CRM Campaigns API
   description: The Campaigns API from Agile CRM — 2 operation(s) for campaigns.
@@ -68,6 +70,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/agile-crm-campaigns-api-openapi.yml
+  - type: Overlay
+    url: overlays/agile-crm-campaigns-overlay.yaml
 - aid: agile-crm:agile-crm-companies-api
   name: Agile CRM Companies API
   description: The Companies API from Agile CRM — 1 operation(s) for companies.
@@ -78,6 +82,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/agile-crm-companies-api-openapi.yml
+  - type: Overlay
+    url: overlays/agile-crm-companies-overlay.yaml
 - aid: agile-crm:agile-crm-contacts-api
   name: Agile CRM Contacts API
   description: The Contacts API from Agile CRM — 18 operation(s) for contacts.
@@ -88,6 +94,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/agile-crm-contacts-api-openapi.yml
+  - type: Overlay
+    url: overlays/agile-crm-contacts-overlay.yaml
 - aid: agile-crm:agile-crm-deals-api
   name: Agile CRM Deals API
   description: The Deals API from Agile CRM — 11 operation(s) for deals.
@@ -98,6 +106,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/agile-crm-deals-api-openapi.yml
+  - type: Overlay
+    url: overlays/agile-crm-deals-overlay.yaml
 - aid: agile-crm:agile-crm-documents-api
   name: Agile CRM Documents API
   description: The Documents API from Agile CRM — 2 operation(s) for documents.
@@ -108,6 +118,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/agile-crm-documents-api-openapi.yml
+  - type: Overlay
+    url: overlays/agile-crm-documents-overlay.yaml
 - aid: agile-crm:agile-crm-events-api
   name: Agile CRM Events API
   description: The Events API from Agile CRM — 3 operation(s) for events.
@@ -118,6 +130,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/agile-crm-events-api-openapi.yml
+  - type: Overlay
+    url: overlays/agile-crm-events-overlay.yaml
 - aid: agile-crm:agile-crm-helpdesk-api
   name: Agile CRM HelpDesk API
   description: The HelpDesk API from Agile CRM — 5 operation(s) for helpdesk.
@@ -128,6 +142,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/agile-crm-helpdesk-api-openapi.yml
+  - type: Overlay
+    url: overlays/agile-crm-helpdesk-overlay.yaml
 - aid: agile-crm:agile-crm-notes-api
   name: Agile CRM Notes API
   description: The Notes API from Agile CRM — 7 operation(s) for notes.
@@ -138,6 +154,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/agile-crm-notes-api-openapi.yml
+  - type: Overlay
+    url: overlays/agile-crm-notes-overlay.yaml
 - aid: agile-crm:agile-crm-tasks-api
   name: Agile CRM Tasks API
   description: The Tasks API from Agile CRM — 6 operation(s) for tasks.
@@ -148,6 +166,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/agile-crm-tasks-api-openapi.yml
+  - type: Overlay
+    url: overlays/agile-crm-tasks-overlay.yaml
 - aid: agile-crm:agile-crm-tracks-api
   name: Agile CRM Tracks API
   description: The Tracks API from Agile CRM — 2 operation(s) for tracks.
@@ -158,6 +178,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/agile-crm-tracks-api-openapi.yml
+  - type: Overlay
+    url: overlays/agile-crm-tracks-overlay.yaml
 common:
   - type: AgenticAccess
     url: agentic-access/agile-crm-agentic-access.yml
@@ -177,6 +199,58 @@ common:
     url: https://www.agilecrm.com/signup
   - url: https://www.agilecrm.com/blog/feed/
     type: Blog
+  - type: Packages
+    url: packages/agile-crm-packages.yml
+  - type: SDKs
+    url: packages/agile-crm-packages.yml
+  - type: MCPServer
+    url: mcp/agile-crm-mcp.yml
+  - type: LLMsTxt
+    url: llms/agile-crm-llms.txt
+  - type: AgentSkill
+    url: skills/_index.yml
+  - type: Conventions
+    url: conventions/agile-crm-conventions.yml
+  - type: ErrorCatalog
+    url: errors/agile-crm-problem-types.yml
+  - type: DataModel
+    url: data-model/agile-crm-data-model.yml
+  - type: Lifecycle
+    url: lifecycle/agile-crm-lifecycle.yml
+  - type: Conformance
+    url: conformance/agile-crm-conformance.yml
+  - type: Webhooks
+    url: asyncapi/agile-crm-webhooks.yml
+  - type: Components
+    url: components/agile-crm-components.yml
+  - type: Plans
+    url: plans/agile-crm-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/agile-crm-rate-limits.yml
+  - type: DeveloperPortal
+    url: https://www.agilecrm.com/api
+  - type: APIReference
+    url: https://github.com/agilecrm/rest-api/blob/master/README.md
+  - type: GitHubOrganization
+    url: https://github.com/agilecrm
+  - type: GettingStarted
+    url: https://www.agilecrm.com/setup-guides
+  - type: Support
+    url: https://www.agilecrm.com/support
+  - type: TermsOfService
+    url: https://www.agilecrm.com/terms
+  - type: PrivacyPolicy
+    url: https://www.agilecrm.com/privacy-policy
+  - type: Login
+    url: https://www.agilecrm.com/login
+  - type: Partners
+    url: https://www.agilecrm.com/partners
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
+
+x-enrichment:
+  date: '2026-08-13'
+  status: enriched
+  artifacts_added: 28
+  pass: local-v1
