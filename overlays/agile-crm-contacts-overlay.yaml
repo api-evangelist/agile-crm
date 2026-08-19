@@ -1,0 +1,265 @@
+overlay: 1.0.0
+info:
+  title: Agile CRM Contacts API - API Evangelist enrichment overlay
+  version: 1.0.0
+extends: ../openapi/agile-crm-contacts-api-openapi.yml
+x-generated: '2026-08-13'
+x-method: generated
+x-source: https://github.com/agilecrm/rest-api/blob/master/README.md
+x-note: 'Captures the enrichments API Evangelist applied on top of the base document: stable operationIds (the vendor names
+  none), the error statuses documented in prose but absent from any machine-readable artifact, and the XML-by-default content-negotiation
+  trap. It does NOT capture the path corrections made on 2026-08-13, which were applied to the base document itself because
+  the previous paths did not match the vendor documentation and were therefore wrong, not enhanced.'
+actions:
+- target: $.info
+  description: Record that this document is maintained by API Evangelist from the vendor's published REST API documentation,
+    and that Agile CRM publishes no OpenAPI of its own.
+  update:
+    x-apievangelist-source: https://github.com/agilecrm/rest-api/blob/master/README.md
+    x-provider-publishes-openapi: false
+- target: $.paths['/api/contacts'].get
+  description: Assign a stable operationId; the vendor's documentation names no operation identifiers.
+  update:
+    operationId: listContacts
+- target: $.paths['/api/contacts'].post
+  description: Assign a stable operationId; the vendor's documentation names no operation identifiers.
+  update:
+    operationId: createContact
+- target: $.paths['/api/contacts/add-score'].post
+  description: Assign a stable operationId; the vendor's documentation names no operation identifiers.
+  update:
+    operationId: addLeadScore
+- target: $.paths['/api/contacts/add/property'].post
+  description: Assign a stable operationId; the vendor's documentation names no operation identifiers.
+  update:
+    operationId: updateContactProperty
+- target: $.paths['/api/contacts/change-owner'].post
+  description: Assign a stable operationId; the vendor's documentation names no operation identifiers.
+  update:
+    operationId: changeContactOwner
+- target: $.paths['/api/contacts/delete/tags'].put
+  description: Assign a stable operationId; the vendor's documentation names no operation identifiers.
+  update:
+    operationId: deleteContactTags
+- target: $.paths['/api/contacts/edit-properties'].put
+  description: Assign a stable operationId; the vendor's documentation names no operation identifiers.
+  update:
+    operationId: updateContactProperties
+- target: $.paths['/api/contacts/edit/add-star'].put
+  description: Assign a stable operationId; the vendor's documentation names no operation identifiers.
+  update:
+    operationId: updateStarValue
+- target: $.paths['/api/contacts/edit/lead-score'].put
+  description: Assign a stable operationId; the vendor's documentation names no operation identifiers.
+  update:
+    operationId: updateLeadScore
+- target: $.paths['/api/contacts/edit/tags'].put
+  description: Assign a stable operationId; the vendor's documentation names no operation identifiers.
+  update:
+    operationId: addContactTags
+- target: $.paths['/api/contacts/email/tags/add'].post
+  description: Assign a stable operationId; the vendor's documentation names no operation identifiers.
+  update:
+    operationId: addTagsByEmail
+- target: $.paths['/api/contacts/email/tags/delete'].post
+  description: Assign a stable operationId; the vendor's documentation names no operation identifiers.
+  update:
+    operationId: deleteTagsByEmail
+- target: $.paths['/api/contacts/search/email'].post
+  description: Assign a stable operationId; the vendor's documentation names no operation identifiers.
+  update:
+    operationId: searchContactsByEmail
+- target: $.paths['/api/contacts/search/email/{email}'].get
+  description: Assign a stable operationId; the vendor's documentation names no operation identifiers.
+  update:
+    operationId: getContactByEmail
+- target: $.paths['/api/contacts/search/phonenumber/{phone}'].get
+  description: Assign a stable operationId; the vendor's documentation names no operation identifiers.
+  update:
+    operationId: getContactByPhone
+- target: $.paths['/api/contacts/{contact_id}/tasks/sort'].get
+  description: Assign a stable operationId; the vendor's documentation names no operation identifiers.
+  update:
+    operationId: listContactTasks
+- target: $.paths['/api/contacts/{id}'].get
+  description: Assign a stable operationId; the vendor's documentation names no operation identifiers.
+  update:
+    operationId: getContact
+- target: $.paths['/api/contacts/{id}'].delete
+  description: Assign a stable operationId; the vendor's documentation names no operation identifiers.
+  update:
+    operationId: deleteContact
+- target: $.paths['/api/filters/filter/dynamic-filter'].post
+  description: Assign a stable operationId; the vendor's documentation names no operation identifiers.
+  update:
+    operationId: filterContactsDynamic
+- target: $.paths['/api/search'].get
+  description: Assign a stable operationId; the vendor's documentation names no operation identifiers.
+  update:
+    operationId: searchContactsAndCompanies
+- target: $.paths['/api/contacts'].get.responses
+  description: Add the error statuses the vendor documents in its "Response - statuses" blocks but omits from any machine-readable
+    form.
+  update:
+    '401':
+      description: Unauthorised - the account email or REST client API key is wrong.
+    '204':
+      description: No Content - Agile CRM returns 204 rather than 404 when no matching record exists.
+- target: $.paths['/api/contacts'].post.responses
+  description: Add the error statuses the vendor documents in its "Response - statuses" blocks but omits from any machine-readable
+    form.
+  update:
+    '401':
+      description: Unauthorised - the account email or REST client API key is wrong.
+    '400':
+      description: Bad Request - the input is in the wrong format. No field-level detail is returned.
+    '406':
+      description: Not Acceptable - the tenant contact limit for the plan has been exceeded.
+- target: $.paths['/api/contacts/add-score'].post.responses
+  description: Add the error statuses the vendor documents in its "Response - statuses" blocks but omits from any machine-readable
+    form.
+  update:
+    '401':
+      description: Unauthorised - the account email or REST client API key is wrong.
+    '400':
+      description: Bad Request - the input is in the wrong format. No field-level detail is returned.
+- target: $.paths['/api/contacts/add/property'].post.responses
+  description: Add the error statuses the vendor documents in its "Response - statuses" blocks but omits from any machine-readable
+    form.
+  update:
+    '401':
+      description: Unauthorised - the account email or REST client API key is wrong.
+    '400':
+      description: Bad Request - the input is in the wrong format. No field-level detail is returned.
+- target: $.paths['/api/contacts/change-owner'].post.responses
+  description: Add the error statuses the vendor documents in its "Response - statuses" blocks but omits from any machine-readable
+    form.
+  update:
+    '401':
+      description: Unauthorised - the account email or REST client API key is wrong.
+    '400':
+      description: Bad Request - the input is in the wrong format. No field-level detail is returned.
+- target: $.paths['/api/contacts/delete/tags'].put.responses
+  description: Add the error statuses the vendor documents in its "Response - statuses" blocks but omits from any machine-readable
+    form.
+  update:
+    '401':
+      description: Unauthorised - the account email or REST client API key is wrong.
+    '400':
+      description: Bad Request - the input is in the wrong format. No field-level detail is returned.
+- target: $.paths['/api/contacts/edit-properties'].put.responses
+  description: Add the error statuses the vendor documents in its "Response - statuses" blocks but omits from any machine-readable
+    form.
+  update:
+    '401':
+      description: Unauthorised - the account email or REST client API key is wrong.
+    '400':
+      description: Bad Request - the input is in the wrong format. No field-level detail is returned.
+- target: $.paths['/api/contacts/edit/add-star'].put.responses
+  description: Add the error statuses the vendor documents in its "Response - statuses" blocks but omits from any machine-readable
+    form.
+  update:
+    '401':
+      description: Unauthorised - the account email or REST client API key is wrong.
+    '400':
+      description: Bad Request - the input is in the wrong format. No field-level detail is returned.
+- target: $.paths['/api/contacts/edit/lead-score'].put.responses
+  description: Add the error statuses the vendor documents in its "Response - statuses" blocks but omits from any machine-readable
+    form.
+  update:
+    '401':
+      description: Unauthorised - the account email or REST client API key is wrong.
+    '400':
+      description: Bad Request - the input is in the wrong format. No field-level detail is returned.
+- target: $.paths['/api/contacts/edit/tags'].put.responses
+  description: Add the error statuses the vendor documents in its "Response - statuses" blocks but omits from any machine-readable
+    form.
+  update:
+    '401':
+      description: Unauthorised - the account email or REST client API key is wrong.
+    '400':
+      description: Bad Request - the input is in the wrong format. No field-level detail is returned.
+- target: $.paths['/api/contacts/email/tags/add'].post.responses
+  description: Add the error statuses the vendor documents in its "Response - statuses" blocks but omits from any machine-readable
+    form.
+  update:
+    '401':
+      description: Unauthorised - the account email or REST client API key is wrong.
+    '400':
+      description: Bad Request - the input is in the wrong format. No field-level detail is returned.
+- target: $.paths['/api/contacts/email/tags/delete'].post.responses
+  description: Add the error statuses the vendor documents in its "Response - statuses" blocks but omits from any machine-readable
+    form.
+  update:
+    '401':
+      description: Unauthorised - the account email or REST client API key is wrong.
+    '400':
+      description: Bad Request - the input is in the wrong format. No field-level detail is returned.
+- target: $.paths['/api/contacts/search/email'].post.responses
+  description: Add the error statuses the vendor documents in its "Response - statuses" blocks but omits from any machine-readable
+    form.
+  update:
+    '401':
+      description: Unauthorised - the account email or REST client API key is wrong.
+    '400':
+      description: Bad Request - the input is in the wrong format. No field-level detail is returned.
+- target: $.paths['/api/contacts/search/email/{email}'].get.responses
+  description: Add the error statuses the vendor documents in its "Response - statuses" blocks but omits from any machine-readable
+    form.
+  update:
+    '401':
+      description: Unauthorised - the account email or REST client API key is wrong.
+    '204':
+      description: No Content - Agile CRM returns 204 rather than 404 when no matching record exists.
+- target: $.paths['/api/contacts/search/phonenumber/{phone}'].get.responses
+  description: Add the error statuses the vendor documents in its "Response - statuses" blocks but omits from any machine-readable
+    form.
+  update:
+    '401':
+      description: Unauthorised - the account email or REST client API key is wrong.
+    '204':
+      description: No Content - Agile CRM returns 204 rather than 404 when no matching record exists.
+- target: $.paths['/api/contacts/{contact_id}/tasks/sort'].get.responses
+  description: Add the error statuses the vendor documents in its "Response - statuses" blocks but omits from any machine-readable
+    form.
+  update:
+    '401':
+      description: Unauthorised - the account email or REST client API key is wrong.
+    '204':
+      description: No Content - Agile CRM returns 204 rather than 404 when no matching record exists.
+- target: $.paths['/api/contacts/{id}'].get.responses
+  description: Add the error statuses the vendor documents in its "Response - statuses" blocks but omits from any machine-readable
+    form.
+  update:
+    '401':
+      description: Unauthorised - the account email or REST client API key is wrong.
+    '204':
+      description: No Content - Agile CRM returns 204 rather than 404 when no matching record exists.
+- target: $.paths['/api/contacts/{id}'].delete.responses
+  description: Add the error statuses the vendor documents in its "Response - statuses" blocks but omits from any machine-readable
+    form.
+  update:
+    '401':
+      description: Unauthorised - the account email or REST client API key is wrong.
+- target: $.paths['/api/filters/filter/dynamic-filter'].post.responses
+  description: Add the error statuses the vendor documents in its "Response - statuses" blocks but omits from any machine-readable
+    form.
+  update:
+    '401':
+      description: Unauthorised - the account email or REST client API key is wrong.
+    '400':
+      description: Bad Request - the input is in the wrong format. No field-level detail is returned.
+- target: $.paths['/api/search'].get.responses
+  description: Add the error statuses the vendor documents in its "Response - statuses" blocks but omits from any machine-readable
+    form.
+  update:
+    '401':
+      description: Unauthorised - the account email or REST client API key is wrong.
+    '204':
+      description: No Content - Agile CRM returns 204 rather than 404 when no matching record exists.
+- target: $.info
+  description: 'Flag the XML-by-default content negotiation: an Accept: application/json header is required on EVERY call
+    or the response is XML.'
+  update:
+    x-default-response-format: application/xml
+    x-json-requires-accept-header: true

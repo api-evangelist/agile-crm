@@ -1,0 +1,166 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Agile CRM REST Campaigns Tasks API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tasks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all tasks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{domain}.agilecrm.com/dev/api/tasks"
+          },
+          "docs": "List all tasks"
+        },
+        {
+          "info": {
+            "name": "Create a task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{domain}.agilecrm.com/dev/api/tasks"
+          },
+          "docs": "Create a task"
+        },
+        {
+          "info": {
+            "name": "Get pending tasks by days",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{domain}.agilecrm.com/dev/api/tasks/pending/:num_days",
+            "params": [
+              {
+                "name": "num_days",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get pending tasks by days"
+        },
+        {
+          "info": {
+            "name": "Retrieve tasks with filters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{domain}.agilecrm.com/dev/api/tasks/based"
+          },
+          "docs": "Retrieve tasks with filters"
+        },
+        {
+          "info": {
+            "name": "Get task by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{domain}.agilecrm.com/dev/api/tasks/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get task by ID"
+        },
+        {
+          "info": {
+            "name": "Partially update a task",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{domain}.agilecrm.com/dev/api/tasks/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Partially update a task"
+        },
+        {
+          "info": {
+            "name": "Delete a task",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{domain}.agilecrm.com/dev/api/tasks/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a task"
+        },
+        {
+          "info": {
+            "name": "Create a task for a contact by email",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{domain}.agilecrm.com/dev/api/tasks/email/:email",
+            "params": [
+              {
+                "name": "email",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Create a task for a contact by email"
+        },
+        {
+          "info": {
+            "name": "Get tasks for a contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{domain}.agilecrm.com/dev/api/contacts/:contact_id/tasks",
+            "params": [
+              {
+                "name": "contact_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get tasks for a contact"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

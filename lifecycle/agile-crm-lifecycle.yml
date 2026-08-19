@@ -1,0 +1,92 @@
+generated: '2026-08-13'
+method: searched
+source: https://www.agilecrm.com/api, https://github.com/agilecrm/rest-api, https://www.agilecrm.com/terms, live probes 2026-08-13
+description: >-
+  Lifecycle posture for the Agile CRM REST API. Agile CRM publishes NO versioning policy, NO
+  deprecation policy, NO changelog, NO SLA and NO status page. Every field below that reads "none"
+  was checked against a specific URL and the status it returned is recorded under evidence.
+versioning:
+  scheme: path-segment
+  current_version: /dev
+  policy_published: false
+  policy_url: null
+  version_header: null
+  breaking_change_notice: null
+  note: >-
+    The base URL is https://{domain}.agilecrm.com/dev and the "/dev" segment has never changed. It is
+    a path marker, not a semantic version — there is no v1, no dated pin, no second version to
+    migrate between, and no published statement about what constitutes a breaking change.
+deprecation:
+  policy_published: false
+  policy_url: null
+  sunset_header: false
+  deprecation_header: false
+  rfc8594: false
+  deprecated_operations: []
+  note: >-
+    No RFC 8594 Sunset or Deprecation header is documented, and no operation in any of the repo's
+    OpenAPI files carries deprecated: true. NO type Deprecation POINTER IS EMITTED.
+sla:
+  published: false
+  url: null
+  uptime_target: null
+  note: >-
+    https://www.agilecrm.com/terms is served (200) but contains no uptime commitment, credit schedule
+    or support-response target.
+status_page:
+  published: false
+  url: null
+  probed:
+  - url: https://status.agilecrm.com/
+    status: 200
+    verdict: not-a-status-page
+    note: >-
+      Resolves but 302s to https://status.agilecrm.com/login and renders the Agile CRM application
+      sign-in screen — it is the wildcard tenant catch-all, not a status page. No incident feed, no
+      component list, and no Statuspage/Instatus/Better Uptime markers in the HTML. The Statuspage
+      API conventions /api/v2/status.json and /api/v2/summary.json both 404, as do /history.rss and
+      /history.atom.
+  - url: https://www.agilecrm.com/status
+    status: 404
+  note: >-
+    NO type StatusPage POINTER IS EMITTED. A 200 on a wildcard subdomain that renders a login form is
+    not a status page.
+changelog:
+  published: false
+  url: null
+  probed:
+  - url: https://www.agilecrm.com/changelog
+    status: 404
+  note: >-
+    No dated API changelog exists on the site or in the github.com/agilecrm/rest-api repository. The
+    documentation repo itself was last pushed 2023-03-25.
+maintenance_signals:
+  api_live: true
+  api_probe:
+    url: https://mydomain.agilecrm.com/dev/api/contacts
+    status: 401
+    note: >-
+      The REST API still answers with an auth challenge rather than a 404, so the surface is live as
+      of 2026-08-13.
+  docs_last_updated: '2023-03-25'
+  docs_source: https://github.com/agilecrm/rest-api
+  newest_sdk_release: '2017-02-24'
+  newest_sdk_commit: '2019-06-17'
+  webhook_guide_last_updated: '2016-02-23'
+  blog_feed:
+    url: https://www.agilecrm.com/blog/feed/
+    status: 502
+    note: >-
+      The WordPress blog and its RSS feed return a Cloudflare 502 Bad Gateway as of 2026-08-13. The
+      Blog pointer in apis.yml points at this feed; it is currently broken at the origin.
+  note: >-
+    The runtime API is alive but every published surface around it has aged: documentation last
+    touched in 2023, client libraries in 2017-2019, the webhook guide in 2016, and the blog feed is
+    502ing. Recorded as observed facts, not as an inference that the product is discontinued.
+ownership:
+  parent_brand: 500apps
+  evidence: >-
+    Both www.agilecrm.com/api and www.agilecrm.com/pricing carry a site-wide "500APPS" navigation
+    block promoting a 38-app bundle at $14.99/user, and the support link on the /api page points at
+    https://500apps.com/support. Agile CRM is presented as part of the 500apps family while keeping
+    its own domain, pricing page and API.

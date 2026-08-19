@@ -2,7 +2,9 @@ openapi: 3.1.0
 info:
   title: Agile CRM REST Campaigns Deals API
   version: 1.0.0
-  description: HTTPS-only REST API for managing contacts, companies, deals (opportunities), campaigns, tasks, events, notes, tracks, tickets, and documents in Agile CRM. Authentication is HTTP Basic with account email as username and REST client API key as password.
+  description: HTTPS-only REST API for managing contacts, companies, deals (opportunities), campaigns, tasks, events, notes,
+    tracks, tickets, and documents in Agile CRM. Authentication is HTTP Basic with account email as username and REST client
+    API key as password.
   contact:
     name: Agile CRM
     url: https://www.agilecrm.com/api
@@ -18,6 +20,17 @@ security:
 tags:
 - name: Deals
 paths:
+  /api/contacts/{id}/deals:
+    get:
+      tags:
+      - Deals
+      summary: Get deals linked to a contact
+      parameters:
+      - $ref: '#/components/parameters/Id'
+      responses:
+        '200':
+          description: Deals
+      operationId: listContactDeals
   /api/opportunity:
     get:
       tags:
@@ -26,6 +39,7 @@ paths:
       responses:
         '200':
           description: Deals
+      operationId: listDeals
     post:
       tags:
       - Deals
@@ -33,33 +47,43 @@ paths:
       responses:
         '200':
           description: Deal created
-  /api/opportunity/{id}:
+      operationId: createDeal
+  /api/opportunity/based:
     get:
       tags:
       - Deals
-      summary: Get deal by ID
-      parameters:
-      - $ref: '#/components/parameters/Id'
+      summary: Get deals from a track
       responses:
         '200':
-          description: Deal
-    delete:
+          description: Deals
+      operationId: listDealsByTrack
+  /api/opportunity/bulk:
+    post:
       tags:
       - Deals
-      summary: Delete a deal
-      parameters:
-      - $ref: '#/components/parameters/Id'
-      responses:
-        '204':
-          description: Deleted
-  /api/opportunity/partial-update:
-    put:
-      tags:
-      - Deals
-      summary: Partially update a deal
+      summary: Bulk delete deals
       responses:
         '200':
-          description: Deal updated
+          description: Deals deleted
+      operationId: bulkDeleteDeals
+  /api/opportunity/byMilestone:
+    get:
+      tags:
+      - Deals
+      summary: Get deals grouped by milestone
+      responses:
+        '200':
+          description: Deals by milestone
+      operationId: listDealsByMilestone
+  /api/opportunity/byPipeline/based:
+    get:
+      tags:
+      - Deals
+      summary: Retrieve deals by pipeline
+      responses:
+        '200':
+          description: Deals
+      operationId: listDealsByPipeline
   /api/opportunity/email/{email}:
     post:
       tags:
@@ -74,48 +98,7 @@ paths:
       responses:
         '200':
           description: Deal created
-  /api/opportunity/bulk:
-    post:
-      tags:
-      - Deals
-      summary: Bulk delete deals
-      responses:
-        '200':
-          description: Deals deleted
-  /api/opportunity/byMilestone:
-    get:
-      tags:
-      - Deals
-      summary: Get deals grouped by milestone
-      responses:
-        '200':
-          description: Deals by milestone
-  /api/opportunity/byPipeline/based:
-    get:
-      tags:
-      - Deals
-      summary: Retrieve deals by pipeline
-      responses:
-        '200':
-          description: Deals
-  /api/opportunity/based:
-    get:
-      tags:
-      - Deals
-      summary: Get deals from a track
-      responses:
-        '200':
-          description: Deals
-  /api/contacts/{id}/deals:
-    get:
-      tags:
-      - Deals
-      summary: Get deals linked to a contact
-      parameters:
-      - $ref: '#/components/parameters/Id'
-      responses:
-        '200':
-          description: Deals
+      operationId: createDealForContactByEmail
   /api/opportunity/my/deals:
     get:
       tags:
@@ -124,6 +107,16 @@ paths:
       responses:
         '200':
           description: Deals
+      operationId: listMyDeals
+  /api/opportunity/partial-update:
+    put:
+      tags:
+      - Deals
+      summary: Partially update a deal
+      responses:
+        '200':
+          description: Deal updated
+      operationId: updateDeal
   /api/opportunity/partial-update/delete-contact:
     put:
       tags:
@@ -132,6 +125,28 @@ paths:
       responses:
         '200':
           description: Updated
+      operationId: removeDealContacts
+  /api/opportunity/{id}:
+    get:
+      tags:
+      - Deals
+      summary: Get deal by ID
+      parameters:
+      - $ref: '#/components/parameters/Id'
+      responses:
+        '200':
+          description: Deal
+      operationId: getDeal
+    delete:
+      tags:
+      - Deals
+      summary: Delete a deal
+      parameters:
+      - $ref: '#/components/parameters/Id'
+      responses:
+        '204':
+          description: Deleted
+      operationId: deleteDeal
 components:
   parameters:
     Id:

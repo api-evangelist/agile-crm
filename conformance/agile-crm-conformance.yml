@@ -1,0 +1,94 @@
+generated: '2026-08-13'
+method: derived
+source: openapi/*.yml, https://github.com/agilecrm/rest-api/blob/master/README.md, https://www.agilecrm.com/terms, https://www.agilecrm.com/privacy-policy
+description: >-
+  Conformance assertions for the Agile CRM REST API against the cross-cutting standards this pipeline
+  tracks. Each entry states whether the API conforms and cites the evidence checked. Agile CRM makes
+  no published conformance or certification claim of any kind — there is no trust centre, no
+  compliance page, and no named certification (SOC 2, ISO 27001, PCI DSS, HIPAA, FedRAMP) anywhere on
+  the site. NO type Compliance POINTER IS EMITTED.
+standards:
+- id: openapi
+  conforms: true
+  version: 3.1.0
+  evidence: >-
+    Ten tag-scoped OpenAPI 3.1.0 documents in openapi/ plus a combined document in openapi/_original/.
+    NOTE ON PROVENANCE: these were written by API Evangelist from the vendor's published REST API
+    documentation — Agile CRM does not itself publish an OpenAPI or Swagger file. Probes on
+    2026-08-13 for /openapi.json, /openapi.yaml, /swagger.json and /api-docs on www.agilecrm.com all
+    returned 404, and no spec exists in the github.com/agilecrm org.
+- id: oauth2
+  conforms: false
+  evidence: >-
+    The only securityScheme is BasicAuth (type http, scheme basic). No authorization endpoint, token
+    endpoint, scopes or grants are documented. /.well-known/oauth-authorization-server returns 403
+    (origin blanket-denies the prefix).
+- id: oidc
+  conforms: false
+  evidence: /.well-known/openid-configuration returns 403; no OIDC discovery document is served.
+- id: rfc9457
+  conforms: false
+  evidence: >-
+    No application/problem+json media type appears in any response, and the vendor documents no error
+    body at all — errors are HTTP status only. See errors/agile-crm-problem-types.yml.
+- id: rfc8594
+  conforms: false
+  evidence: No Sunset or Deprecation header is documented; no operation is marked deprecated.
+- id: idempotency
+  conforms: false
+  evidence: >-
+    No idempotency key header, no request-id echo, and no conditional headers (ETag, If-Match,
+    If-None-Match) appear in the vendor documentation. POST creates are not safely retryable.
+- id: pagination
+  conforms: true
+  style: opaque-cursor
+  evidence: >-
+    page_size + cursor documented on the contacts, deals, tasks, companies, campaigns and dynamic
+    filter list endpoints. Conforms in the sense that a documented paging mechanism exists; it does
+    NOT follow any pagination standard — the count is carried inside the first array element and the
+    next cursor inside the last, with no envelope.
+- id: json-api
+  conforms: false
+  evidence: Bare JSON arrays and objects; no JSON:API document structure, no type/attributes members.
+- id: odata
+  conforms: false
+  evidence: No $filter/$select/$expand or OData metadata document.
+- id: scim
+  conforms: false
+  evidence: >-
+    No user provisioning surface at all — Agile CRM exposes no user endpoint, even though owner_id
+    references users from Deal and Task.
+- id: webhooks
+  conforms: partial
+  evidence: >-
+    Four documented events across two modules, delivered as JSON POST with an
+    {eventName, eventData} envelope. Partial because delivery is unsigned (no signature header, no
+    shared secret, no timestamp), retry behaviour is undocumented, and subscriptions can only be
+    created by a human in the admin UI. See asyncapi/agile-crm-webhooks.yml.
+- id: asyncapi
+  conforms: false
+  evidence: No AsyncAPI document is published and none is derivable from a schema source.
+- id: tls
+  conforms: true
+  evidence: >-
+    TLSv1.3 on www.agilecrm.com; the vendor documents the API as "HTTPS-only". HSTS is NOT set — see
+    security/agile-crm-domain-security.yml.
+- id: security-txt
+  conforms: false
+  evidence: >-
+    /.well-known/security.txt returns 403 and /security.txt returns 404. No vulnerability disclosure
+    contact is published.
+compliance_claims:
+  published: false
+  certifications: []
+  trust_center: null
+  evidence: >-
+    probe-security-programs.py returned vdp=none trust=none on 2026-08-13. /security, /gdpr and
+    /compliance are not served (404). https://www.agilecrm.com/terms and
+    https://www.agilecrm.com/privacy-policy are served (200) but name no audited certification or
+    compliance programme.
+summary:
+  asserted: 15
+  conforms: 4
+  partial: 1
+  fails: 10

@@ -1,0 +1,91 @@
+generated: '2026-08-13'
+method: searched
+source: https://www.agilecrm.com/api ("Components" list) + https://github.com/agilecrm
+description: >-
+  Client-side and embeddable surfaces Agile CRM ships alongside its REST API. The vendor's own
+  developer page groups these under a "Components" heading, distinct from its server-side SDKs, and
+  describes them as "ready to deploy components... for commonly used, front-end functionality (e.g.
+  lead capture)". All are distributed as source and instructions on GitHub — none is published to npm
+  or a CDN with a versioned URL, so no component here can be pinned to a version.
+summary:
+  families: 3
+  components: 6
+  registry_published: 0
+  versioned_distribution: false
+  note: >-
+    Every component is a copy-paste snippet or a repo to clone. There is no loader library, no
+    package, and no pinned CDN build, so a consumer cannot tell which revision of a component they
+    are running. The most recently touched component repo was pushed in 2017.
+families:
+- name: Web capture and tracking
+  description: Snippets embedded on a customer's own site to capture leads and track visitors.
+  components:
+  - name: JavaScript API
+    type: script-snippet
+    repo: https://github.com/agilecrm/javascript-api
+    distribution: copy-paste analytics snippet
+    version: null
+    published: null
+    last_pushed: '2017-05-01'
+    note: >-
+      The web analytics / contact-creation snippet. Includes a create_contact.html worked example.
+      Unpinned — the snippet loads Agile CRM's hosted script, so the served build floats and a site
+      owner cannot tell what version they have.
+  - name: Landing Page API
+    type: hosted-page
+    repo: https://github.com/agilecrm/landing-page
+    distribution: source on GitHub
+    version: null
+    published: null
+    last_pushed: '2015-06-05'
+  - name: Pop-ups API
+    type: embeddable-widget
+    repo: https://github.com/agilecrm/agile-popups
+    distribution: source on GitHub
+    version: null
+    published: null
+    last_pushed: '2015-07-28'
+- name: In-app widgets
+  description: Extensions that render inside the Agile CRM contact page itself.
+  components:
+  - name: Widgets API
+    type: in-app-extension
+    repo: https://github.com/agilecrm/widget-api-html
+    distribution: source on GitHub
+    version: null
+    published: null
+    last_pushed: '2017-08-10'
+    note: Custom widget rendered on the Agile CRM contacts page.
+  - name: Widgets Backend API
+    type: in-app-extension-backend
+    repo: https://github.com/agilecrm/widget-api-backend
+    distribution: source on GitHub (Java)
+    version: null
+    published: null
+    last_pushed: '2014-09-19'
+- name: Campaign extension
+  description: Custom node inserted into the visual campaign workflow builder.
+  components:
+  - name: JSON-IO Node API
+    type: workflow-node
+    repo: https://github.com/agilecrm/agile-crm-json-io-node
+    distribution: source on GitHub
+    version: null
+    published: null
+    last_pushed: '2014-05-07'
+    note: >-
+      Lets a campaign workflow call out to an external JSON endpoint mid-flow. The only documented
+      way to extend a campaign programmatically, since the Campaigns REST surface is read-only plus
+      enrol/remove.
+related:
+  sso:
+    name: SSO Guide
+    repo: https://github.com/agilecrm/sso
+    last_pushed: '2017-05-01'
+    note: Single sign-on setup instructions, listed on the same developer page. Not a UI component.
+  telephony_widgets:
+    repo: https://github.com/agilecrm/agile-telephony
+    last_pushed: '2017-02-22'
+  dashlets:
+    repo: https://github.com/agilecrm/dashlets
+    last_pushed: '2016-05-10'

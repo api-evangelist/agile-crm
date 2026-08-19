@@ -1,0 +1,116 @@
+generated: '2026-08-13'
+method: searched
+source: https://github.com/agilecrm/webhooks/blob/master/README.md
+description: >-
+  Agile CRM's webhook surface, taken from the vendor's own first-party integration guide at
+  github.com/agilecrm/webhooks. Agile CRM publishes NO AsyncAPI document and no event catalog page —
+  this is a Webhooks artifact, not an AsyncAPI one, and no type AsyncAPI pointer is emitted.
+  The webhook surface is narrow: exactly two modules (Contact and Deal) and four documented event
+  names, configured per tenant from the admin UI rather than through the REST API. There is no
+  webhook management endpoint in the REST API, so a subscription cannot be created programmatically.
+spec: null
+spec_format: none
+configuration:
+  mechanism: admin-ui-only
+  location: Admin Settings > API & Analytics > Webhooks
+  fields:
+  - name: Notify URL
+    description: The REST API URL of the third-party application that will receive the notification.
+    type: URL
+  - name: Module
+    description: Which object triggers the webhook. Checkbox — Contact and/or Deal.
+    type: checkbox
+    values:
+    - Contact
+    - Deal
+  api_managed: false
+  note: >-
+    Webhooks can only be registered by a human in the admin console. The Agile CRM REST API exposes
+    no endpoint for creating, listing, updating or deleting a webhook subscription, so an agent or an
+    installer cannot provision one.
+transport:
+  method: POST
+  content_type: application/json
+  envelope:
+    fields:
+    - name: eventName
+      description: Human-readable name of the event that fired.
+      type: string
+    - name: eventData
+      description: The full JSON object for the entity that changed (contact or deal).
+      type: object
+  signing: none
+  signature_header: null
+  retries: undocumented
+  ip_allowlist: undocumented
+  note: >-
+    The guide documents no signature header, no shared secret, no timestamp and no replay
+    protection, and says nothing about retry or delivery-failure behaviour. A receiver therefore
+    cannot verify that a payload came from Agile CRM. Recorded as published, not as adequate.
+events:
+- name: Contact is Created
+  module: Contact
+  entity: contact
+  description: Fires when a new contact is created in the tenant.
+  payload_fields:
+  - id
+  - type
+  - created_time
+  - properties
+- name: Contact is Updated
+  module: Contact
+  entity: contact
+  description: Fires when an existing contact is modified.
+  payload_fields:
+  - id
+  - type
+  - created_time
+  - updated_time
+  - properties
+- name: Opportunity is Created
+  module: Deal
+  entity: deal
+  description: Fires when a new deal (opportunity) is created.
+  payload_fields:
+  - id
+  - name
+  - colorName
+  - contact_ids
+  - expected_value
+  - milestone
+  - probability
+  - close_date
+  - owner_id
+  - pipeline_id
+- name: Opportunity is Updated
+  module: Deal
+  entity: deal
+  description: Fires when an existing deal is modified.
+  payload_fields:
+  - id
+  - name
+  - colorName
+  - contact_ids
+  - expected_value
+  - milestone
+  - probability
+  - close_date
+  - owner_id
+  - pipeline_id
+summary:
+  event_count: 4
+  module_count: 2
+  asyncapi_published: false
+  signed: false
+  programmatically_manageable: false
+testing:
+  documented_tools:
+  - name: RequestBin
+    url: http://requestb.in/
+    status: defunct
+  - name: Postcatcher.in
+    url: http://postcatcher.in/
+    status: defunct
+  note: >-
+    Both webhook test services the guide recommends are dead, and both are linked over plain http.
+    The guide has not been revised since — the repo was last pushed 2016-02-23.

@@ -2,7 +2,9 @@ openapi: 3.1.0
 info:
   title: Agile CRM REST Campaigns Tasks API
   version: 1.0.0
-  description: HTTPS-only REST API for managing contacts, companies, deals (opportunities), campaigns, tasks, events, notes, tracks, tickets, and documents in Agile CRM. Authentication is HTTP Basic with account email as username and REST client API key as password.
+  description: HTTPS-only REST API for managing contacts, companies, deals (opportunities), campaigns, tasks, events, notes,
+    tracks, tickets, and documents in Agile CRM. Authentication is HTTP Basic with account email as username and REST client
+    API key as password.
   contact:
     name: Agile CRM
     url: https://www.agilecrm.com/api
@@ -26,6 +28,7 @@ paths:
       responses:
         '200':
           description: Tasks
+      operationId: listTasks
     post:
       tags:
       - Tasks
@@ -33,20 +36,7 @@ paths:
       responses:
         '200':
           description: Task created
-  /api/tasks/pending/{num_days}:
-    get:
-      tags:
-      - Tasks
-      summary: Get pending tasks by days
-      parameters:
-      - name: num_days
-        in: path
-        required: true
-        schema:
-          type: integer
-      responses:
-        '200':
-          description: Tasks
+      operationId: createTask
   /api/tasks/based:
     get:
       tags:
@@ -55,34 +45,7 @@ paths:
       responses:
         '200':
           description: Tasks
-  /api/tasks/{id}:
-    get:
-      tags:
-      - Tasks
-      summary: Get task by ID
-      parameters:
-      - $ref: '#/components/parameters/Id'
-      responses:
-        '200':
-          description: Task
-    put:
-      tags:
-      - Tasks
-      summary: Partially update a task
-      parameters:
-      - $ref: '#/components/parameters/Id'
-      responses:
-        '200':
-          description: Task updated
-    delete:
-      tags:
-      - Tasks
-      summary: Delete a task
-      parameters:
-      - $ref: '#/components/parameters/Id'
-      responses:
-        '204':
-          description: Task deleted
+      operationId: listTasksFiltered
   /api/tasks/email/{email}:
     post:
       tags:
@@ -97,24 +60,54 @@ paths:
       responses:
         '200':
           description: Task created
-  /api/contacts/{contact_id}/tasks:
+      operationId: createTaskForContactByEmail
+  /api/tasks/partial-update:
+    put:
+      tags:
+      - Tasks
+      summary: Partially update a task
+      responses:
+        '200':
+          description: Task updated
+      operationId: updateTask
+  /api/tasks/pending/{num_days}:
     get:
       tags:
       - Tasks
-      summary: Get tasks for a contact
+      summary: Get pending tasks by days
       parameters:
-      - $ref: '#/components/parameters/ContactId'
+      - name: num_days
+        in: path
+        required: true
+        schema:
+          type: integer
       responses:
         '200':
           description: Tasks
+      operationId: listPendingTasks
+  /api/tasks/{id}:
+    get:
+      tags:
+      - Tasks
+      summary: Get task by ID
+      parameters:
+      - $ref: '#/components/parameters/Id'
+      responses:
+        '200':
+          description: Task
+      operationId: getTask
+    delete:
+      tags:
+      - Tasks
+      summary: Delete a task
+      parameters:
+      - $ref: '#/components/parameters/Id'
+      responses:
+        '204':
+          description: Task deleted
+      operationId: deleteTask
 components:
   parameters:
-    ContactId:
-      name: contact_id
-      in: path
-      required: true
-      schema:
-        type: string
     Id:
       name: id
       in: path

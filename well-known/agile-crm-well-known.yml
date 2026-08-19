@@ -1,0 +1,78 @@
+generated: '2026-08-13'
+method: probed
+source: live HTTP probes of www.agilecrm.com and status.agilecrm.com on 2026-08-13
+description: >-
+  Well-known discovery probe for Agile CRM. NOTHING WAS FOUND — no pointer is emitted in apis.yml.
+  The origin (nginx/1.12.1 behind Cloudflare) returns a 185-byte "403 Forbidden" nginx page for
+  EVERY path under /.well-known/, including paths that would otherwise 404. Paths outside
+  /.well-known/ return the site's ordinary 404 page, which confirms the 403 is a blanket deny on the
+  /.well-known/ prefix rather than per-document behaviour. No security.txt, no OIDC/OAuth metadata,
+  no api-catalog, no ai-plugin.json and no agent card are served on any Agile CRM host.
+  NOTE ON BOT PROTECTION: Cloudflare in front of agilecrm.com returns 403 to a default curl user
+  agent for every path. All statuses below were captured with a full browser user agent and browser
+  Accept headers, so the /.well-known/ 403s are the ORIGIN's answer, not the bot challenge.
+summary:
+  hosts_probed: 2
+  paths_probed: 12
+  hits: 0
+  well_known_pointer_emitted: false
+  reason: >-
+    No /.well-known/ path returned a 200 carrying a real document, so no type WellKnown and no
+    type SecurityTxt pointer is written. A recorded absence is valid data; a pointer would assert a
+    surface the provider does not serve.
+hosts:
+- host: www.agilecrm.com
+  paths:
+  - path: /.well-known/security.txt
+    status: 403
+    file: null
+    note: nginx 403 Forbidden, 185 bytes, text/html — origin denies the whole /.well-known/ prefix
+  - path: /.well-known/openid-configuration
+    status: 403
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 403
+    file: null
+  - path: /.well-known/oauth-protected-resource
+    status: 403
+    file: null
+  - path: /.well-known/api-catalog
+    status: 403
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 403
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 403
+    file: null
+  - path: /.well-known/agent.json
+    status: 403
+    file: null
+  - path: /.well-known/mcp.json
+    status: 403
+    file: null
+  - path: /security.txt
+    status: 404
+    file: null
+    note: >-
+      Site 404 page (14650 bytes of HTML). Probed at the root as a fallback because the
+      /.well-known/ prefix is blanket-denied; also absent.
+  - path: /robots.txt
+    status: 200
+    file: null
+    note: >-
+      Served, but robots.txt is not a well-known discovery document and earns no pointer. Declares
+      Sitemap https://www.agilecrm.com/sitemap.xml and disallows /blog/tag/, /blog/category/,
+      /landing/, /newsletter/, /legalese/ and /test/. No AI/agent-specific user-agent rules.
+  - path: /llms.txt
+    status: 404
+    file: null
+- host: status.agilecrm.com
+  paths:
+  - path: /.well-known/agent-card.json
+    status: 404
+    file: null
+    note: >-
+      status.agilecrm.com is NOT a status page — it 302s to /login and renders the Agile CRM
+      application sign-in screen. It is the wildcard tenant catch-all, so no StatusPage pointer is
+      emitted either.

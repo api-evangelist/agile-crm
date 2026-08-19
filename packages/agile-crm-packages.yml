@@ -1,0 +1,137 @@
+generated: '2026-08-13'
+method: searched
+source: https://github.com/agilecrm (official GitHub org) + https://www.agilecrm.com/api + registry.npmjs.org + pypi.org
+description: >-
+  First-party Agile CRM client libraries. Agile CRM distributes almost all of its SDKs as SOURCE ON
+  GITHUB ONLY — the /api developer page links every client library to a github.com/agilecrm repo, not
+  to a package registry. Only the Node.js client was ever published to a registry (npm), and it was
+  last released in 2017. There is no Agile CRM package on Maven Central, NuGet, RubyGems, Packagist
+  or crates.io, so the Java, C#, Ruby, PHP, iOS and Android clients must be vendored from GitHub by
+  hand. Every registry below was queried unauthenticated on 2026-08-13.
+summary:
+  total: 11
+  official: 9
+  registry_published: 1
+  third_party_listed: 2
+  newest_official_release: '2017-02-24'
+  newest_official_commit: '2019-06-17'
+  note: >-
+    Every first-party SDK predates 2020. The most recently touched official client (nodejs) was last
+    pushed 2019-06-17; the newest registry release of any first-party package is agile_crm 1.2.5 on
+    2017-02-24. The REST API itself is still live (an unauthenticated call to
+    https://{domain}.agilecrm.com/dev/api/contacts returns 401, not 404), so the SDK layer has decayed
+    well behind the API it wraps.
+packages:
+- name: agile_crm
+  registry: npm
+  url: https://www.npmjs.com/package/agile_crm
+  language: JavaScript
+  official: true
+  version: 1.2.5
+  published: '2017-02-24'
+  source: https://github.com/agilecrm/nodejs
+  note: >-
+    The package.json committed at github.com/agilecrm/nodejs/agilecrm/package.json is name
+    "agile_crm" version 1.2.5, matching this registry entry exactly. Published by npm user
+    "ghanraut" (ghanshyam.agile@gmail.com) — the same Ghanshyam Raut whose @agilecrm.com address
+    appears as the record owner throughout the official REST API documentation. Seven versions
+    published between 2016 and 2017; none since.
+- name: agile-crm
+  registry: npm
+  url: https://www.npmjs.com/package/agile-crm
+  language: JavaScript
+  official: true
+  version: 1.0.0
+  published: '2016-04-11'
+  source: https://github.com/agilecrm/nodejs
+  note: >-
+    Hyphenated alias of the same client, published by the same maintainer account
+    (ghanshyam.agile@gmail.com) and declaring repository git+https://github.com/agilecrm/nodejs.git.
+    Only one version was ever published. Prefer agile_crm, which received six further releases.
+- name: php-api
+  registry: github
+  url: https://github.com/agilecrm/php-api
+  language: PHP
+  official: true
+  version: null
+  published: null
+  note: >-
+    Not published to Packagist (repo.packagist.org returns 404 for agilecrm/*). Source-only; last
+    pushed 2019-02-13. version/published are null because there is no registry release to read.
+- name: python-api
+  registry: github
+  url: https://github.com/agilecrm/python-api
+  language: Python
+  official: true
+  version: null
+  published: null
+  note: >-
+    A single AgileCRM.py module, not a packaged distribution. Not on PyPI under any agilecrm name
+    owned by the vendor. Last pushed 2017-05-01.
+- name: java-api
+  registry: github
+  url: https://github.com/agilecrm/java-api
+  language: Java
+  official: true
+  version: null
+  published: null
+  note: >-
+    Not on Maven Central — search.maven.org returns numFound 0 for "agilecrm". Source-only; last
+    pushed 2017-05-01.
+- name: c-sharp-api
+  registry: github
+  url: https://github.com/agilecrm/c-sharp-api
+  language: C#
+  official: true
+  version: null
+  published: null
+  note: >-
+    Not on NuGet — the NuGet search service returns totalHits 0 for "agilecrm". A single AgileCRM.cs
+    file; last pushed 2017-05-01.
+- name: ruby-on-rails
+  registry: github
+  url: https://github.com/agilecrm/ruby-on-rails
+  language: Ruby
+  official: true
+  version: null
+  published: null
+  note: >-
+    Not on RubyGems — both "agilecrm" and "agile_crm" return "This rubygem could not be found."
+    A single agilecrm.rb; last pushed 2017-05-01.
+- name: ios-sdk
+  registry: github
+  url: https://github.com/agilecrm/ios-sdk
+  language: Objective-C
+  official: true
+  version: null
+  published: null
+  note: No CocoaPods/SPM manifest in the repo; source-only. Last pushed 2017-05-01.
+- name: android-api
+  registry: github
+  url: https://github.com/agilecrm/android-api
+  language: Java
+  official: true
+  version: null
+  published: null
+  note: No Maven/Gradle publication; source-only. Last pushed 2016-11-02.
+- name: agilecrm
+  registry: pypi
+  url: https://pypi.org/project/agilecrm/
+  language: Python
+  official: false
+  version: 0.0.3
+  published: '2016-11-25'
+  source: https://github.com/vpetersson/py-agilecrm
+  note: >-
+    Community client by Viktor Petersson, unaffiliated with Agile CRM. Listed only to disambiguate it
+    from the vendor's own python-api repo, which is NOT this package.
+- name: agilecrm-python
+  registry: pypi
+  url: https://pypi.org/project/agilecrm-python/
+  language: Python
+  official: false
+  version: 0.1.5
+  published: '2023-03-28'
+  note: >-
+    Community API wrapper authored by Miguel Ferrer, unaffiliated with Agile CRM. The most recently
+    released Agile CRM client library in any registry is therefore third-party, not first-party.

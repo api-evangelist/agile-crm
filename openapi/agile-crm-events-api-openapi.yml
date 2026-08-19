@@ -2,7 +2,9 @@ openapi: 3.1.0
 info:
   title: Agile CRM REST Campaigns Events API
   version: 1.0.0
-  description: HTTPS-only REST API for managing contacts, companies, deals (opportunities), campaigns, tasks, events, notes, tracks, tickets, and documents in Agile CRM. Authentication is HTTP Basic with account email as username and REST client API key as password.
+  description: HTTPS-only REST API for managing contacts, companies, deals (opportunities), campaigns, tasks, events, notes,
+    tracks, tickets, and documents in Agile CRM. Authentication is HTTP Basic with account email as username and REST client
+    API key as password.
   contact:
     name: Agile CRM
     url: https://www.agilecrm.com/api
@@ -18,22 +20,7 @@ security:
 tags:
 - name: Events
 paths:
-  /api/events:
-    get:
-      tags:
-      - Events
-      summary: List events
-      responses:
-        '200':
-          description: Events
-    post:
-      tags:
-      - Events
-      summary: Create an event
-      responses:
-        '200':
-          description: Event created
-  /api/contacts/{contact_id}/events:
+  /api/contacts/{contact_id}/events/sort:
     get:
       tags:
       - Events
@@ -43,6 +30,24 @@ paths:
       responses:
         '200':
           description: Events
+      operationId: listContactEvents
+  /api/events:
+    get:
+      tags:
+      - Events
+      summary: List events
+      responses:
+        '200':
+          description: Events
+      operationId: listEvents
+    post:
+      tags:
+      - Events
+      summary: Create an event
+      responses:
+        '200':
+          description: Event created
+      operationId: createEvent
   /api/events/{id}:
     put:
       tags:
@@ -53,6 +58,7 @@ paths:
       responses:
         '200':
           description: Event updated
+      operationId: updateEvent
     delete:
       tags:
       - Events
@@ -62,6 +68,7 @@ paths:
       responses:
         '204':
           description: Event deleted
+      operationId: deleteEvent
 components:
   parameters:
     ContactId:

@@ -1,0 +1,58 @@
+generated: '2026-08-13'
+method: searched
+source: https://github.com/agilecrm/rest-api/blob/master/README.md, https://www.agilecrm.com/api, https://www.agilecrm.com/pricing
+description: >-
+  Agile CRM publishes NO API rate limits. The vendor's own 166 KB REST API reference contains no
+  occurrence of "rate limit", "throttle", "quota per second/minute/hour", "429", "Retry-After",
+  "X-RateLimit" or "RateLimit-" anywhere in its text, and neither the /api developer page nor the
+  pricing page names a request-rate ceiling on any tier. An honest zero, recorded as data.
+limit_count: 0
+documented: false
+headers: []
+status_on_exhaustion: null
+retry_after: false
+searched:
+- url: https://github.com/agilecrm/rest-api/blob/master/README.md
+  status: 200
+  result: >-
+    Full-text search for rate limit / throttl / 429 / X-RateLimit / RateLimit- / Retry-After returned
+    zero matches across all 4,900 lines. The only quota-shaped status documented is HTTP 406, and it
+    is a CONTACT-COUNT ceiling ("If the limit of the contacts is exceeded") on POST /api/contacts —
+    a plan quota, not a request rate.
+- url: https://www.agilecrm.com/api
+  status: 200
+  result: Marketing page for the developer surface; no limits stated.
+- url: https://www.agilecrm.com/pricing
+  status: 200
+  result: >-
+    Tiers differentiate on contact ceilings, email sends and analytics events, not on API calls. No
+    per-second, per-minute or per-day request allowance appears on any tier.
+adjacent_quotas:
+- name: Contacts and companies per tenant
+  scope: per-account
+  window: none (a standing ceiling, not a rate)
+  limits:
+    free: 1000
+    starter: 10000
+    regular: 50000
+    enterprise: unlimited
+  enforcement:
+    operation: POST /api/contacts
+    status: 406
+    body: none
+  ref: plans/agile-crm-plans-pricing.yml
+  note: >-
+    Included because it is the ONE published ceiling an API client will actually hit, and because it
+    surfaces as an HTTP status. It is not a rate limit and must not be counted as one.
+- name: Branded email sends
+  scope: per-account
+  window: month
+  included: 5000
+  overage: $0.004/email up to 100k, $0.003/email for the next 1m, $0.002/email BYOC
+  note: A billing meter on the marketing product, not an API rate limit.
+implications:
+  note: >-
+    With no published limit and no response header, an API client has no way to pace itself and no
+    runtime signal to back off on. Retry logic cannot key on Retry-After, and because the API also
+    has no idempotency mechanism (see conventions/agile-crm-conventions.yml), a blind retry after a
+    timeout duplicates writes. Callers should self-impose a conservative rate.

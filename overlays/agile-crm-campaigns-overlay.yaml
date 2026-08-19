@@ -1,0 +1,59 @@
+overlay: 1.0.0
+info:
+  title: Agile CRM Campaigns API - API Evangelist enrichment overlay
+  version: 1.0.0
+extends: ../openapi/agile-crm-campaigns-api-openapi.yml
+x-generated: '2026-08-13'
+x-method: generated
+x-source: https://github.com/agilecrm/rest-api/blob/master/README.md
+x-note: 'Captures the enrichments API Evangelist applied on top of the base document: stable operationIds (the vendor names
+  none), the error statuses documented in prose but absent from any machine-readable artifact, and the XML-by-default content-negotiation
+  trap. It does NOT capture the path corrections made on 2026-08-13, which were applied to the base document itself because
+  the previous paths did not match the vendor documentation and were therefore wrong, not enhanced.'
+actions:
+- target: $.info
+  description: Record that this document is maintained by API Evangelist from the vendor's published REST API documentation,
+    and that Agile CRM publishes no OpenAPI of its own.
+  update:
+    x-apievangelist-source: https://github.com/agilecrm/rest-api/blob/master/README.md
+    x-provider-publishes-openapi: false
+- target: $.paths['/api/campaigns/enroll/email'].post
+  description: Assign a stable operationId; the vendor's documentation names no operation identifiers.
+  update:
+    operationId: enrollContactInCampaign
+- target: $.paths['/api/workflows'].get
+  description: Assign a stable operationId; the vendor's documentation names no operation identifiers.
+  update:
+    operationId: listCampaigns
+- target: $.paths['/api/workflows/remove-active-subscriber/{workflowId}/{contactId}'].delete
+  description: Assign a stable operationId; the vendor's documentation names no operation identifiers.
+  update:
+    operationId: removeCampaignSubscriber
+- target: $.paths['/api/campaigns/enroll/email'].post.responses
+  description: Add the error statuses the vendor documents in its "Response - statuses" blocks but omits from any machine-readable
+    form.
+  update:
+    '401':
+      description: Unauthorised - the account email or REST client API key is wrong.
+    '400':
+      description: Bad Request - the input is in the wrong format. No field-level detail is returned.
+- target: $.paths['/api/workflows'].get.responses
+  description: Add the error statuses the vendor documents in its "Response - statuses" blocks but omits from any machine-readable
+    form.
+  update:
+    '401':
+      description: Unauthorised - the account email or REST client API key is wrong.
+    '204':
+      description: No Content - Agile CRM returns 204 rather than 404 when no matching record exists.
+- target: $.paths['/api/workflows/remove-active-subscriber/{workflowId}/{contactId}'].delete.responses
+  description: Add the error statuses the vendor documents in its "Response - statuses" blocks but omits from any machine-readable
+    form.
+  update:
+    '401':
+      description: Unauthorised - the account email or REST client API key is wrong.
+- target: $.info
+  description: 'Flag the XML-by-default content negotiation: an Accept: application/json header is required on EVERY call
+    or the response is XML.'
+  update:
+    x-default-response-format: application/xml
+    x-json-requires-accept-header: true

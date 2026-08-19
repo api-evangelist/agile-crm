@@ -1,0 +1,280 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Agile CRM REST Campaigns Contacts API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Contacts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List contacts ordered by creation time",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{domain}.agilecrm.com/dev/api/contacts"
+          },
+          "docs": "List contacts ordered by creation time"
+        },
+        {
+          "info": {
+            "name": "Create a new contact (or company when type is COMPANY)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{domain}.agilecrm.com/dev/api/contacts"
+          },
+          "docs": "Create a new contact (or company when type is COMPANY)"
+        },
+        {
+          "info": {
+            "name": "Get a contact by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{domain}.agilecrm.com/dev/api/contacts/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a contact by ID"
+        },
+        {
+          "info": {
+            "name": "Delete a contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{domain}.agilecrm.com/dev/api/contacts/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a contact"
+        },
+        {
+          "info": {
+            "name": "Partially update contact properties",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{domain}.agilecrm.com/dev/api/contacts/edit-properties"
+          },
+          "docs": "Partially update contact properties"
+        },
+        {
+          "info": {
+            "name": "Modify lead score",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{domain}.agilecrm.com/dev/api/contacts/edit/lead-score"
+          },
+          "docs": "Modify lead score"
+        },
+        {
+          "info": {
+            "name": "Update star rating",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{domain}.agilecrm.com/dev/api/contacts/edit/add-star"
+          },
+          "docs": "Update star rating"
+        },
+        {
+          "info": {
+            "name": "Add tags to a contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{domain}.agilecrm.com/dev/api/contacts/edit/tags"
+          },
+          "docs": "Add tags to a contact"
+        },
+        {
+          "info": {
+            "name": "Remove tags from a contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{domain}.agilecrm.com/dev/api/contacts/delete/tags"
+          },
+          "docs": "Remove tags from a contact"
+        },
+        {
+          "info": {
+            "name": "Find a contact by email",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{domain}.agilecrm.com/dev/api/contacts/search/email/:email",
+            "params": [
+              {
+                "name": "email",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Find a contact by email"
+        },
+        {
+          "info": {
+            "name": "Search multiple contacts by email",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{domain}.agilecrm.com/dev/api/contacts/search/email"
+          },
+          "docs": "Search multiple contacts by email"
+        },
+        {
+          "info": {
+            "name": "Search contacts and companies by keyword",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{domain}.agilecrm.com/dev/api/search"
+          },
+          "docs": "Search contacts and companies by keyword"
+        },
+        {
+          "info": {
+            "name": "Add tags via email",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{domain}.agilecrm.com/dev/api/contacts/email/tags/add"
+          },
+          "docs": "Add tags via email"
+        },
+        {
+          "info": {
+            "name": "Remove tags via email",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{domain}.agilecrm.com/dev/api/contacts/email/tags/delete"
+          },
+          "docs": "Remove tags via email"
+        },
+        {
+          "info": {
+            "name": "Adjust lead score",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{domain}.agilecrm.com/dev/api/contacts/add-score"
+          },
+          "docs": "Adjust lead score"
+        },
+        {
+          "info": {
+            "name": "Get associated tasks for a contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{domain}.agilecrm.com/dev/api/contacts/:contact_id/tasks/sort",
+            "params": [
+              {
+                "name": "contact_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get associated tasks for a contact"
+        },
+        {
+          "info": {
+            "name": "Update a single contact property",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{domain}.agilecrm.com/dev/api/contacts/add/property"
+          },
+          "docs": "Update a single contact property"
+        },
+        {
+          "info": {
+            "name": "Reassign contact owner",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{domain}.agilecrm.com/dev/api/contacts/change-owner"
+          },
+          "docs": "Reassign contact owner"
+        },
+        {
+          "info": {
+            "name": "Locate a contact by phone number",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{domain}.agilecrm.com/dev/api/contacts/search/phonenumber/:phone",
+            "params": [
+              {
+                "name": "phone",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Locate a contact by phone number"
+        },
+        {
+          "info": {
+            "name": "Filter contacts dynamically",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{domain}.agilecrm.com/dev/api/filters/filter/dynamic-filter"
+          },
+          "docs": "Filter contacts dynamically"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

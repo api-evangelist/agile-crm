@@ -1,0 +1,92 @@
+generated: '2026-08-13'
+method: searched
+source: https://github.com/agilecrm/rest-api/blob/master/README.md ("Response - statuses" blocks)
+description: >-
+  Error catalog for the Agile CRM REST API, read from the "Response - statuses" block the vendor
+  publishes beneath every endpoint in its own REST API documentation. Agile CRM does NOT use RFC 9457
+  problem+json, does not return a structured error envelope, and does not publish machine-readable
+  error codes. Errors are conveyed by HTTP status alone, with a prose explanation in the docs and no
+  documented body. There are exactly five distinct statuses across all 71 documented operations.
+format: none
+media_type: null
+rfc9457: false
+envelope:
+  documented: false
+  note: >-
+    No error body shape is published anywhere in the vendor documentation. Callers must branch on the
+    HTTP status code; there is no code, type, detail or instance field to parse, and no way to
+    distinguish two different causes of the same status.
+summary:
+  distinct_statuses: 5
+  documented_occurrences: 226
+  machine_readable_codes: 0
+  retryable_statuses: 0
+problem_types:
+- status: 200
+  title: Success
+  category: success
+  occurrences: 74
+  detail: >-
+    Returned on success for reads and for most writes. Agile CRM returns 200 (not 201) on create —
+    POST /api/contacts, POST /api/opportunity and POST /api/tasks all document 200 with the newly
+    created object in the response body.
+- status: 204
+  title: No Content
+  category: success-or-empty
+  occurrences: 22
+  detail: >-
+    Overloaded. Used both for a successful delete ("Contact deleted successfully", "Task deleted
+    successfully", "Track deleted successfully") AND for an empty result set on a read ("There are no
+    contacts in your account", "No contact with the specified ID in your account", "No contact with
+    the specified phone number in your account").
+  remediation: >-
+    Do NOT treat 204 on a GET as an error and do NOT treat it as a delete confirmation without
+    knowing the verb. On GET /api/contacts/{id}, GET /api/contacts/search/phonenumber/{phone} and
+    GET /api/contacts, a 204 is Agile CRM's substitute for a 404 — the record does not exist.
+- status: 400
+  title: Bad Request
+  category: client-error
+  occurrences: 38
+  detail: >-
+    "If the input is in wrong format." Raised on malformed request bodies across contacts, deals,
+    tasks, notes, events and tracks; a variant on POST /api/contacts/search/email reads "If the email
+    is in wrong format."
+  remediation: >-
+    No field-level error is returned, so the offending property cannot be identified from the
+    response. Validate against the published field tables before sending — in particular the
+    case-sensitive enumerations (task type CALL/EMAIL/FOLLOW_UP/MEETING/MILESTONE/SEND/TWEET/OTHER,
+    priority_type HIGH/NORMAL/LOW, status YET_TO_START/IN_PROGRESS/COMPLETED, contact type
+    PERSON/COMPANY, property type SYSTEM/CUSTOM) and the epoch-second date fields.
+- status: 401
+  title: Unauthorised
+  category: auth-error
+  occurrences: 71
+  detail: >-
+    "when the user name and password fields are wrong." The single most frequently documented status
+    — it appears under every one of the 71 operations. Agile CRM authenticates with HTTP Basic where
+    the username is the account email and the password is the REST client API key.
+  remediation: >-
+    Confirm the tenant subdomain in the base URL (https://{domain}.agilecrm.com/dev) matches the
+    account, and that the key used is the FIRST key on Admin Settings > API & Analytics — the "API
+    Key for REST client" — and not one of the other keys on that screen. Note that all Agile CRM data
+    is case-sensitive, including the email used as the Basic username.
+- status: 406
+  title: Not Acceptable
+  category: quota-error
+  occurrences: 2
+  detail: >-
+    "If the limit of the contacts is exceeded." Returned by POST /api/contacts when the tenant is at
+    its plan's contact ceiling (1,000 on Free, 10,000 on Starter, 50,000 on Regular, unlimited on
+    Enterprise — see plans/agile-crm-plans-pricing.yml).
+  remediation: >-
+    This is a plan-quota condition, not a malformed request — retrying will not clear it. Upgrade the
+    tenant plan or delete contacts. Agile CRM reuses 406 here rather than the conventional 402 or
+    403, so a generic HTTP client will misclassify it as a content-negotiation failure.
+not_published:
+- status: 429
+  note: >-
+    No rate-limit status is documented anywhere in the vendor's REST API documentation. See
+    rate-limits/agile-crm-rate-limits.yml — limits are entirely undocumented, so a client has no
+    published signal to back off on.
+- status: 5xx
+  note: No server-error behaviour is documented for any operation.

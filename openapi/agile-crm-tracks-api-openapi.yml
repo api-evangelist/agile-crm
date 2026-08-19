@@ -2,7 +2,9 @@ openapi: 3.1.0
 info:
   title: Agile CRM REST Campaigns Tracks API
   version: 1.0.0
-  description: HTTPS-only REST API for managing contacts, companies, deals (opportunities), campaigns, tasks, events, notes, tracks, tickets, and documents in Agile CRM. Authentication is HTTP Basic with account email as username and REST client API key as password.
+  description: HTTPS-only REST API for managing contacts, companies, deals (opportunities), campaigns, tasks, events, notes,
+    tracks, tickets, and documents in Agile CRM. Authentication is HTTP Basic with account email as username and REST client
+    API key as password.
   contact:
     name: Agile CRM
     url: https://www.agilecrm.com/api
@@ -18,7 +20,7 @@ security:
 tags:
 - name: Tracks
 paths:
-  /api/tracks:
+  /api/milestone/pipelines:
     get:
       tags:
       - Tracks
@@ -26,6 +28,7 @@ paths:
       responses:
         '200':
           description: Tracks
+      operationId: listTracks
     post:
       tags:
       - Tracks
@@ -33,16 +36,16 @@ paths:
       responses:
         '200':
           description: Track created
-  /api/tracks/{id}:
+      operationId: createTrack
     put:
       tags:
       - Tracks
       summary: Update a track
-      parameters:
-      - $ref: '#/components/parameters/Id'
       responses:
         '200':
           description: Track updated
+      operationId: updateTrack
+  /api/milestone/pipelines/{id}:
     delete:
       tags:
       - Tracks
@@ -52,6 +55,7 @@ paths:
       responses:
         '204':
           description: Track deleted
+      operationId: deleteTrack
 components:
   parameters:
     Id:

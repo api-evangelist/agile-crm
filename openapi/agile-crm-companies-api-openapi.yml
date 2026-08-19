@@ -2,7 +2,9 @@ openapi: 3.1.0
 info:
   title: Agile CRM REST Campaigns Companies API
   version: 1.0.0
-  description: HTTPS-only REST API for managing contacts, companies, deals (opportunities), campaigns, tasks, events, notes, tracks, tickets, and documents in Agile CRM. Authentication is HTTP Basic with account email as username and REST client API key as password.
+  description: HTTPS-only REST API for managing contacts, companies, deals (opportunities), campaigns, tasks, events, notes,
+    tracks, tickets, and documents in Agile CRM. Authentication is HTTP Basic with account email as username and REST client
+    API key as password.
   contact:
     name: Agile CRM
     url: https://www.agilecrm.com/api
@@ -26,6 +28,7 @@ paths:
       responses:
         '200':
           description: Companies
+      operationId: listCompanies
 components:
   securitySchemes:
     BasicAuth:

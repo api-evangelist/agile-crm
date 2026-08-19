@@ -1,0 +1,83 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Agile CRM REST Campaigns Tracks API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tracks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List tracks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{domain}.agilecrm.com/dev/api/tracks"
+          },
+          "docs": "List tracks"
+        },
+        {
+          "info": {
+            "name": "Create a track",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{domain}.agilecrm.com/dev/api/tracks"
+          },
+          "docs": "Create a track"
+        },
+        {
+          "info": {
+            "name": "Update a track",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{domain}.agilecrm.com/dev/api/tracks/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update a track"
+        },
+        {
+          "info": {
+            "name": "Delete a track",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{domain}.agilecrm.com/dev/api/tracks/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a track"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

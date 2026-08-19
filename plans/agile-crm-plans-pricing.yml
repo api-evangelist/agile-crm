@@ -1,0 +1,153 @@
+generated: '2026-08-13'
+method: searched
+source: https://www.agilecrm.com/pricing
+description: >-
+  Agile CRM's published plans, read from its own pricing page on 2026-08-13. Pricing is per user per
+  month and every tier is self-serve — there is no "contact sales" gate. Prices are listed at three
+  commitment terms; the headline figure on the page is the 2-year price, with a higher monthly and an
+  intermediate yearly rate. Contact ceilings are the quota that matters for API consumers, because
+  exceeding one makes POST /api/contacts return HTTP 406.
+currency: USD
+billing_unit: per user per month
+plan_count: 4
+free_tier: true
+public_pricing: true
+enterprise_contact_only: false
+plans:
+- name: Free
+  price: 0
+  currency: USD
+  period: month
+  seats: 10
+  seat_limit_note: Free for up to 10 users; no credit card required.
+  quotas:
+    contacts_and_companies: 1000
+    deals: unlimited
+    tasks: unlimited
+    documents: unlimited
+    branded_emails_per_month: 5000
+    plugins: 1
+  features:
+  - Custom data fields
+  - Lead scoring
+  - Appointment scheduling
+  - Custom deal milestones
+  - Email tracking
+  - Email campaigns
+  - Web engagement
+  - Form builder
+  - Email template builder
+  - Landing page builder
+  - Web-to-lead
+  - Helpdesk (groups, labels, canned responses, views, activities, reports)
+  - Email support
+  - Google Sync
+  - Chrome extension
+  - Basic reports
+- name: Starter
+  price: 8.99
+  currency: USD
+  period: month
+  price_terms:
+    two_year: 8.99
+    yearly: 9.99
+    monthly_discount_note: '2 Years: 40% off; Yearly: 34% off'
+  quotas:
+    contacts_and_companies: 10000
+    branded_emails_per_month: 5000
+    plugins: 3
+  adds:
+  - 2-way email integration
+  - Marketing automation
+  - Social monitoring
+  - Email & phone support
+  - Google/Shopify/Stripe sync
+  - Email reports
+- name: Regular
+  price: 29.99
+  currency: USD
+  period: month
+  price_terms:
+    two_year: 29.99
+    yearly: 39.99
+    monthly_discount_note: '2 Years: 40% off; Yearly: 20% off'
+  quotas:
+    contacts_and_companies: 50000
+    branded_emails_per_month: 5000
+    plugins: 50
+    plugins_note: 50+ plugins/integrations
+  adds:
+  - Custom deal tracks
+  - 2-way telephony
+  - Mobile marketing (SMS)
+- name: Enterprise
+  price: 47.99
+  currency: USD
+  period: month
+  price_terms:
+    two_year: 47.99
+    yearly: 64.99
+    monthly_discount_note: '2 Years: 40% off; Yearly: 20% off'
+  quotas:
+    contacts_and_companies: unlimited
+    branded_emails_per_month: 5000
+  adds:
+  - Post call automation
+  - Call recording
+  - Automated voicemails
+overages:
+- meter: Contact-level analytics (web engagement events)
+  tiers:
+  - up_to: 10000
+    price: 0
+    note: free
+  - next: 50000
+    price: 50
+    currency: USD
+  - next: 500000
+    price: 150
+    currency: USD
+  - next: 1000000
+    price: 249
+    currency: USD
+- meter: Branded email sends
+  tiers:
+  - up_to: 100000
+    price: 0.004
+    currency: USD
+    unit: per email
+  - next: 1000000
+    price: 0.003
+    currency: USD
+    unit: per email
+  byoc:
+    price: 0.002
+    currency: USD
+    unit: per email
+    providers: [Mandrill, Amazon SES, SendGrid]
+    note: Bring-your-own-credentials rate.
+- meter: Mobile marketing (SMS)
+  byoc:
+    price: 2
+    currency: USD
+    unit: per thousand messages
+    providers: [Twilio, Plivo]
+  availability: Regular and Enterprise only
+api_access:
+  gated: false
+  note: >-
+    The REST API is not sold as a paid add-on and no tier in the pricing table names API access,
+    request volume or API rate limits as a differentiator. The practical API constraint is the
+    per-plan contact ceiling, enforced at POST /api/contacts with HTTP 406 (see
+    errors/agile-crm-problem-types.yml).
+related_offer:
+  name: 500apps
+  price: 14.99
+  currency: USD
+  period: month
+  unit: per user
+  apps: 38
+  note: >-
+    A site-wide banner on the Agile CRM pricing page promotes the 500apps bundle — 38+ apps for
+    $14.99/user with no tiered plans. Recorded because it is on Agile CRM's own pricing page, but it
+    is a different product from the Agile CRM plans above.

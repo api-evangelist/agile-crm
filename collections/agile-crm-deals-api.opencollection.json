@@ -1,0 +1,196 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Agile CRM REST Campaigns Deals API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Deals",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all deals",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{domain}.agilecrm.com/dev/api/opportunity"
+          },
+          "docs": "List all deals"
+        },
+        {
+          "info": {
+            "name": "Create a deal",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{domain}.agilecrm.com/dev/api/opportunity"
+          },
+          "docs": "Create a deal"
+        },
+        {
+          "info": {
+            "name": "Get deal by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{domain}.agilecrm.com/dev/api/opportunity/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get deal by ID"
+        },
+        {
+          "info": {
+            "name": "Delete a deal",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{domain}.agilecrm.com/dev/api/opportunity/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a deal"
+        },
+        {
+          "info": {
+            "name": "Partially update a deal",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{domain}.agilecrm.com/dev/api/opportunity/partial-update"
+          },
+          "docs": "Partially update a deal"
+        },
+        {
+          "info": {
+            "name": "Create a deal for a contact by email",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{domain}.agilecrm.com/dev/api/opportunity/email/:email",
+            "params": [
+              {
+                "name": "email",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Create a deal for a contact by email"
+        },
+        {
+          "info": {
+            "name": "Bulk delete deals",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{domain}.agilecrm.com/dev/api/opportunity/bulk"
+          },
+          "docs": "Bulk delete deals"
+        },
+        {
+          "info": {
+            "name": "Get deals grouped by milestone",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{domain}.agilecrm.com/dev/api/opportunity/byMilestone"
+          },
+          "docs": "Get deals grouped by milestone"
+        },
+        {
+          "info": {
+            "name": "Retrieve deals by pipeline",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{domain}.agilecrm.com/dev/api/opportunity/byPipeline/based"
+          },
+          "docs": "Retrieve deals by pipeline"
+        },
+        {
+          "info": {
+            "name": "Get deals from a track",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{domain}.agilecrm.com/dev/api/opportunity/based"
+          },
+          "docs": "Get deals from a track"
+        },
+        {
+          "info": {
+            "name": "Get deals linked to a contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{domain}.agilecrm.com/dev/api/contacts/:id/deals",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get deals linked to a contact"
+        },
+        {
+          "info": {
+            "name": "Retrieve the calling user's deals",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{domain}.agilecrm.com/dev/api/opportunity/my/deals"
+          },
+          "docs": "Retrieve the calling user's deals"
+        },
+        {
+          "info": {
+            "name": "Remove contacts from a deal",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{domain}.agilecrm.com/dev/api/opportunity/partial-update/delete-contact"
+          },
+          "docs": "Remove contacts from a deal"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

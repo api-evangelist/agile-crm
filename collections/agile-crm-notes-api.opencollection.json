@@ -1,0 +1,139 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Agile CRM REST Campaigns Notes API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Notes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a note and relate to contacts",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{domain}.agilecrm.com/dev/api/notes"
+          },
+          "docs": "Create a note and relate to contacts"
+        },
+        {
+          "info": {
+            "name": "Add a note via email",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{domain}.agilecrm.com/dev/api/contacts/email/note/add"
+          },
+          "docs": "Add a note via email"
+        },
+        {
+          "info": {
+            "name": "Get notes for a contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{domain}.agilecrm.com/dev/api/contacts/:contact_id/notes",
+            "params": [
+              {
+                "name": "contact_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get notes for a contact"
+        },
+        {
+          "info": {
+            "name": "Remove a contact note",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{domain}.agilecrm.com/dev/api/contacts/:contact_id/notes/:note_id",
+            "params": [
+              {
+                "name": "contact_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "note_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Remove a contact note"
+        },
+        {
+          "info": {
+            "name": "Create a deal note",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{domain}.agilecrm.com/dev/api/opportunity/deals/notes"
+          },
+          "docs": "Create a deal note"
+        },
+        {
+          "info": {
+            "name": "Update a deal note",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{domain}.agilecrm.com/dev/api/opportunity/deals/notes"
+          },
+          "docs": "Update a deal note"
+        },
+        {
+          "info": {
+            "name": "Get deal notes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{domain}.agilecrm.com/dev/api/opportunity/:deal_id/notes",
+            "params": [
+              {
+                "name": "deal_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get deal notes"
+        },
+        {
+          "info": {
+            "name": "Bulk delete notes",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{domain}.agilecrm.com/dev/api/contacts/notes/bulk"
+          },
+          "docs": "Bulk delete notes"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -2,7 +2,9 @@ openapi: 3.1.0
 info:
   title: Agile CRM REST Campaigns Contacts API
   version: 1.0.0
-  description: HTTPS-only REST API for managing contacts, companies, deals (opportunities), campaigns, tasks, events, notes, tracks, tickets, and documents in Agile CRM. Authentication is HTTP Basic with account email as username and REST client API key as password.
+  description: HTTPS-only REST API for managing contacts, companies, deals (opportunities), campaigns, tasks, events, notes,
+    tracks, tickets, and documents in Agile CRM. Authentication is HTTP Basic with account email as username and REST client
+    API key as password.
   contact:
     name: Agile CRM
     url: https://www.agilecrm.com/api
@@ -26,6 +28,7 @@ paths:
       responses:
         '200':
           description: Contact list
+      operationId: listContacts
     post:
       tags:
       - Contacts
@@ -33,57 +36,34 @@ paths:
       responses:
         '200':
           description: Contact created
-  /api/contacts/{id}:
-    get:
+      operationId: createContact
+  /api/contacts/add-score:
+    post:
       tags:
       - Contacts
-      summary: Get a contact by ID
-      parameters:
-      - $ref: '#/components/parameters/Id'
+      summary: Adjust lead score
       responses:
         '200':
-          description: Contact details
-    delete:
+          description: Score adjusted
+      operationId: addLeadScore
+  /api/contacts/add/property:
+    post:
       tags:
       - Contacts
-      summary: Delete a contact
-      parameters:
-      - $ref: '#/components/parameters/Id'
-      responses:
-        '204':
-          description: Contact deleted
-  /api/contacts/edit-properties:
-    put:
-      tags:
-      - Contacts
-      summary: Partially update contact properties
+      summary: Update a single contact property
       responses:
         '200':
-          description: Properties updated
-  /api/contacts/edit/lead-score:
-    put:
+          description: Property updated
+      operationId: updateContactProperty
+  /api/contacts/change-owner:
+    post:
       tags:
       - Contacts
-      summary: Modify lead score
+      summary: Reassign contact owner
       responses:
         '200':
-          description: Lead score updated
-  /api/contacts/edit/add-star:
-    put:
-      tags:
-      - Contacts
-      summary: Update star rating
-      responses:
-        '200':
-          description: Star rating updated
-  /api/contacts/edit/tags:
-    put:
-      tags:
-      - Contacts
-      summary: Add tags to a contact
-      responses:
-        '200':
-          description: Tags added
+          description: Owner reassigned
+      operationId: changeContactOwner
   /api/contacts/delete/tags:
     put:
       tags:
@@ -92,6 +72,70 @@ paths:
       responses:
         '200':
           description: Tags removed
+      operationId: deleteContactTags
+  /api/contacts/edit-properties:
+    put:
+      tags:
+      - Contacts
+      summary: Partially update contact properties
+      responses:
+        '200':
+          description: Properties updated
+      operationId: updateContactProperties
+  /api/contacts/edit/add-star:
+    put:
+      tags:
+      - Contacts
+      summary: Update star rating
+      responses:
+        '200':
+          description: Star rating updated
+      operationId: updateStarValue
+  /api/contacts/edit/lead-score:
+    put:
+      tags:
+      - Contacts
+      summary: Modify lead score
+      responses:
+        '200':
+          description: Lead score updated
+      operationId: updateLeadScore
+  /api/contacts/edit/tags:
+    put:
+      tags:
+      - Contacts
+      summary: Add tags to a contact
+      responses:
+        '200':
+          description: Tags added
+      operationId: addContactTags
+  /api/contacts/email/tags/add:
+    post:
+      tags:
+      - Contacts
+      summary: Add tags via email
+      responses:
+        '200':
+          description: Tags added
+      operationId: addTagsByEmail
+  /api/contacts/email/tags/delete:
+    post:
+      tags:
+      - Contacts
+      summary: Remove tags via email
+      responses:
+        '200':
+          description: Tags removed
+      operationId: deleteTagsByEmail
+  /api/contacts/search/email:
+    post:
+      tags:
+      - Contacts
+      summary: Search multiple contacts by email
+      responses:
+        '200':
+          description: Contacts found
+      operationId: searchContactsByEmail
   /api/contacts/search/email/{email}:
     get:
       tags:
@@ -106,72 +150,7 @@ paths:
       responses:
         '200':
           description: Contact found
-  /api/contacts/search/email:
-    post:
-      tags:
-      - Contacts
-      summary: Search multiple contacts by email
-      responses:
-        '200':
-          description: Contacts found
-  /api/search:
-    get:
-      tags:
-      - Contacts
-      summary: Search contacts and companies by keyword
-      responses:
-        '200':
-          description: Search results
-  /api/contacts/email/tags/add:
-    post:
-      tags:
-      - Contacts
-      summary: Add tags via email
-      responses:
-        '200':
-          description: Tags added
-  /api/contacts/email/tags/delete:
-    post:
-      tags:
-      - Contacts
-      summary: Remove tags via email
-      responses:
-        '200':
-          description: Tags removed
-  /api/contacts/add-score:
-    post:
-      tags:
-      - Contacts
-      summary: Adjust lead score
-      responses:
-        '200':
-          description: Score adjusted
-  /api/contacts/{contact_id}/tasks/sort:
-    get:
-      tags:
-      - Contacts
-      summary: Get associated tasks for a contact
-      parameters:
-      - $ref: '#/components/parameters/ContactId'
-      responses:
-        '200':
-          description: Tasks
-  /api/contacts/add/property:
-    post:
-      tags:
-      - Contacts
-      summary: Update a single contact property
-      responses:
-        '200':
-          description: Property updated
-  /api/contacts/change-owner:
-    post:
-      tags:
-      - Contacts
-      summary: Reassign contact owner
-      responses:
-        '200':
-          description: Owner reassigned
+      operationId: getContactByEmail
   /api/contacts/search/phonenumber/{phone}:
     get:
       tags:
@@ -186,6 +165,39 @@ paths:
       responses:
         '200':
           description: Contact found
+      operationId: getContactByPhone
+  /api/contacts/{contact_id}/tasks/sort:
+    get:
+      tags:
+      - Contacts
+      summary: Get associated tasks for a contact
+      parameters:
+      - $ref: '#/components/parameters/ContactId'
+      responses:
+        '200':
+          description: Tasks
+      operationId: listContactTasks
+  /api/contacts/{id}:
+    get:
+      tags:
+      - Contacts
+      summary: Get a contact by ID
+      parameters:
+      - $ref: '#/components/parameters/Id'
+      responses:
+        '200':
+          description: Contact details
+      operationId: getContact
+    delete:
+      tags:
+      - Contacts
+      summary: Delete a contact
+      parameters:
+      - $ref: '#/components/parameters/Id'
+      responses:
+        '204':
+          description: Contact deleted
+      operationId: deleteContact
   /api/filters/filter/dynamic-filter:
     post:
       tags:
@@ -194,6 +206,16 @@ paths:
       responses:
         '200':
           description: Filtered contacts
+      operationId: filterContactsDynamic
+  /api/search:
+    get:
+      tags:
+      - Contacts
+      summary: Search contacts and companies by keyword
+      responses:
+        '200':
+          description: Search results
+      operationId: searchContactsAndCompanies
 components:
   parameters:
     ContactId:

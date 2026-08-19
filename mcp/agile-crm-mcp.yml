@@ -1,0 +1,100 @@
+generated: '2026-08-13'
+method: derived
+source: openapi/agile-crm-contacts-api-openapi.yml, openapi/agile-crm-deals-api-openapi.yml, openapi/agile-crm-tasks-api-openapi.yml, openapi/agile-crm-helpdesk-api-openapi.yml
+status: candidate
+description: >-
+  CANDIDATE ONLY — Agile CRM does not ship an MCP server. The tools below are DERIVED from the
+  provider's own documented REST operations as a design sketch of what an Agile CRM MCP server would
+  expose; nothing here is published, hosted or installable today. Do not treat this as an agent
+  surface.
+deployment:
+  mode: none
+  endpoint: null
+  install: null
+  package: null
+  auth: api-key
+  verified: derived
+  note: >-
+    mode is none because no server exists in either form. Probes on 2026-08-13 for a remote endpoint
+    returned mcp.agilecrm.com/mcp 404, mcp.agilecrm.com/sse 404, www.agilecrm.com/mcp 404 and
+    www.agilecrm.com/api/mcp 404 (POST tools/list, Accept application/json + text/event-stream).
+    A registry sweep of npm for an Agile CRM MCP package found none — the nearest hits
+    (twenty-mcp-server, attio-mcp, rise-mcp) are servers for OTHER CRMs, and @pikku/addon-agile-crm
+    is a third-party Pikku framework addon, not an MCP server. auth is recorded as api-key because
+    the underlying REST API authenticates with HTTP Basic (account email + REST client API key),
+    which is what any such server would have to carry.
+discovery:
+  probed: '2026-08-13'
+  endpoints:
+  - url: https://mcp.agilecrm.com/mcp
+    status: 404
+  - url: https://mcp.agilecrm.com/sse
+    status: 404
+  - url: https://www.agilecrm.com/mcp
+    status: 404
+  - url: https://www.agilecrm.com/api/mcp
+    status: 404
+  - url: https://www.agilecrm.com/.well-known/mcp.json
+    status: 403
+    note: origin blanket-denies the /.well-known/ prefix; see well-known/agile-crm-well-known.yml
+tools:
+- name: search_contacts
+  description: Search contacts and companies by keyword across the tenant.
+  rest: searchContactsAndCompanies
+  operation: GET /api/search
+- name: get_contact_by_email
+  description: Look up a single contact by email address.
+  rest: getContactByEmail
+  operation: GET /api/contacts/search/email/{email}
+- name: create_contact
+  description: Create a contact (or a company when type is COMPANY). first_name is mandatory.
+  rest: createContact
+  operation: POST /api/contacts
+- name: update_contact_properties
+  description: Partially update the properties of an existing contact by id.
+  rest: updateContactProperties
+  operation: PUT /api/contacts/edit-properties
+- name: tag_contact
+  description: Add tags to a contact by id.
+  rest: addContactTags
+  operation: PUT /api/contacts/edit/tags
+- name: list_deals
+  description: List all deals (opportunities) in the tenant, paged by page_size and cursor.
+  rest: listDeals
+  operation: GET /api/opportunity
+- name: create_deal
+  description: Create a deal. Requires name, expected_value, probability, milestone and pipeline_id.
+  rest: createDeal
+  operation: POST /api/opportunity
+- name: update_deal
+  description: Partially update a deal by id.
+  rest: updateDeal
+  operation: PUT /api/opportunity/partial-update
+- name: list_contact_deals
+  description: List the deals related to a specific contact.
+  rest: listContactDeals
+  operation: GET /api/contacts/{id}/deals
+- name: create_task
+  description: Create a task with type, priority_type, due and subject.
+  rest: createTask
+  operation: POST /api/tasks
+- name: list_pending_tasks
+  description: List tasks pending within a given number of days.
+  rest: listPendingTasks
+  operation: GET /api/tasks/pending/{num_days}
+- name: create_note
+  description: Create a note and relate it to one or more contacts.
+  rest: createNote
+  operation: POST /api/notes
+- name: list_tickets
+  description: List helpdesk tickets.
+  rest: listTickets
+  operation: GET /api/tickets/filter
+- name: create_ticket
+  description: Open a new helpdesk ticket.
+  rest: createTicket
+  operation: POST /api/tickets/new-ticket
+- name: enroll_contact_in_campaign
+  description: Add a contact to a marketing campaign by email.
+  rest: enrollContactInCampaign
+  operation: POST /api/campaigns/enroll/email

@@ -1,0 +1,350 @@
+generated: '2026-08-13'
+method: searched
+source: https://github.com/agilecrm/rest-api/blob/master/README.md (field tables) + openapi/*.yml (path structure)
+description: >-
+  Entity/relationship graph for the Agile CRM REST API. Entities and their fields are read from the
+  vendor's own published field tables; relationships are read from the id-reference fields in those
+  tables (contact_company_id, contact_ids, contact_json, contacts, notes, owner_id, pipeline_id) and
+  corroborated by the nested path structure of the documented endpoints. Agile CRM publishes no JSON
+  Schema and no component schemas, so nothing here is derived from a schema document.
+identifiers:
+  style: numeric
+  type: Long
+  prefixed: false
+  note: >-
+    Ids are bare 16-digit App Engine datastore integers (e.g. 5667649732214784) with no type prefix,
+    so an id alone does not reveal which entity it belongs to. They are frequently returned as JSON
+    strings inside reference arrays (contact_ids: ["122", 145, 201]) and as numbers elsewhere — the
+    same field mixes both types in the vendor's own example payloads.
+timestamps:
+  format: epoch-seconds
+  fields:
+  - created_time
+  - updated_time
+  - due
+  - start
+  - end
+  note: All time fields are integer epoch seconds, not ISO 8601.
+entities:
+- name: Contact
+  api: Contacts
+  read_only_fields:
+  - id
+  - campaignStatus
+  - unsubscribeStatus
+  - emailBounceStatus
+  fields:
+  - name: id
+    type: Long
+    read_only: true
+  - name: type
+    type: String
+    enum: [PERSON, COMPANY]
+    default: PERSON
+    note: The SAME entity carries both contacts and companies, discriminated by this field.
+  - name: tags
+    type: List
+    note: Not applicable to companies. Tag name must start with a letter; only underscore and space are allowed as specials.
+  - name: lead_score
+    type: Integer
+    note: Not applicable to companies.
+  - name: star_value
+    type: Short
+    range: 0-5
+  - name: contact_company_id
+    type: Long
+    reference: Contact
+    note: Points at another Contact whose type is COMPANY.
+  - name: properties
+    type: List<Property>
+    required: true
+    note: first_name is mandatory.
+  - name: campaignStatus
+    type: List<Object>
+    read_only: true
+  - name: unsubscribeStatus
+    type: List<Object>
+    read_only: true
+  - name: emailBounceStatus
+    type: List<Object>
+    read_only: true
+  - name: owner
+    type: Object
+    read_only: true
+- name: Property
+  api: Contacts
+  embedded_in: Contact
+  fields:
+  - name: name
+    type: String
+    required: true
+  - name: type
+    type: String
+    enum: [SYSTEM, CUSTOM]
+    required: true
+  - name: subtype
+    type: String
+    note: >-
+      Only SYSTEM properties carry subtypes. email -> work|personal; phone -> work|home|mobile|main|
+      home fax|work fax|other; address -> home|postal|office; website -> URL|SKYPE|TWITTER|LINKEDIN|
+      FACEBOOK|XING|FEED|GOOGLE_PLUS|FLICKR|GITHUB|YOUTUBE.
+  - name: value
+    type: String
+- name: Deal
+  api: Deals
+  alias: Opportunity
+  note: Called "Deal" in the UI and the docs, but "opportunity" in every URL path.
+  fields:
+  - name: id
+    type: Long
+    read_only: true
+  - name: name
+    type: String
+  - name: expected_value
+    type: String
+  - name: probability
+    type: Integer
+  - name: close_date
+    type: Long
+  - name: milestone
+    type: String
+    required: true
+    note: Must be one of the milestones defined on the referenced Track.
+  - name: pipeline_id
+    type: Long
+    required: true
+    reference: Track
+  - name: owner_id
+    type: String
+    required: true
+    reference: User
+  - name: contact_ids
+    type: List<Long>
+    reference: Contact
+- name: Note
+  api: Notes
+  fields:
+  - name: id
+    type: Long
+    read_only: true
+  - name: created_time
+    type: Long
+    read_only: true
+  - name: subject
+    type: String
+    required: true
+  - name: description
+    type: String
+    required: true
+  - name: contact_json
+    type: List<Long>
+    reference: Contact
+- name: Task
+  api: Tasks
+  fields:
+  - name: id
+    type: Long
+    read_only: true
+  - name: type
+    type: String
+    required: true
+    enum: [CALL, EMAIL, FOLLOW_UP, MEETING, MILESTONE, SEND, TWEET, OTHER]
+  - name: priority_type
+    type: String
+    required: true
+    enum: [HIGH, NORMAL, LOW]
+  - name: due
+    type: Long
+    required: true
+  - name: created_time
+    type: Long
+    read_only: true
+  - name: is_complete
+    type: Boolean
+  - name: progress
+    type: Integer
+    range: 0-100
+  - name: status
+    type: String
+    enum: [YET_TO_START, IN_PROGRESS, COMPLETED]
+  - name: subject
+    type: String
+    required: true
+  - name: entity_type
+    type: String
+    read_only: true
+    const: task
+  - name: contacts
+    type: List<Long>
+    reference: Contact
+  - name: notes
+    type: List<Long>
+    reference: Note
+  - name: owner_id
+    type: Long
+    reference: User
+  - name: taskOwner
+    type: Object
+    read_only: true
+- name: Event
+  api: Events
+  fields:
+  - name: id
+    type: Long
+    read_only: true
+  - name: created_time
+    type: Long
+    read_only: true
+  - name: title
+    type: String
+    required: true
+  - name: start
+    type: Long
+    required: true
+  - name: end
+    type: Long
+    required: true
+  - name: allDay
+    type: Boolean
+  - name: color
+    type: String
+    note: Encodes priority — red = High, "#36C" = Normal, green = Low. Case-sensitive.
+  - name: is_event_starred
+    type: Boolean
+  - name: contacts
+    type: List<Long>
+    reference: Contact
+- name: Track
+  api: Tracks
+  alias: Pipeline
+  note: Called "Track" in the docs but addressed as /api/milestone/pipelines, and referenced from Deal as pipeline_id.
+  fields:
+  - name: id
+    type: Long
+    read_only: true
+  - name: name
+    type: String
+    required: true
+  - name: milestones
+    type: String
+    required: true
+    note: Comma-separated, case-sensitive; first letter upper case.
+- name: Ticket
+  api: HelpDesk
+  fields:
+  - name: id
+    type: Long
+    read_only: true
+  note: >-
+    Agile CRM publishes no field table for tickets — only example payloads and endpoints. Fields are
+    therefore not enumerated here rather than guessed.
+- name: Document
+  api: Documents
+  fields:
+  - name: id
+    type: Long
+    read_only: true
+  note: >-
+    No published field table; documents are always addressed in the context of a contact
+    (/api/documents/contact/{contact_id}/docs).
+- name: Campaign
+  api: Campaigns
+  alias: Workflow
+  note: Called "campaign" in the docs, addressed as /api/workflows. Read-only over the API — list and enrol/remove only.
+  fields:
+  - name: id
+    type: Long
+    read_only: true
+  - name: name
+    type: String
+  - name: created_time
+    type: Long
+  - name: updated_time
+    type: Long
+  - name: rules
+    type: String
+    note: The whole visual workflow graph serialised as a JSON string inside a JSON field.
+  - name: unsubscribe
+    type: Object
+- name: User
+  api: null
+  note: >-
+    Referenced by owner_id on Deal and Task and returned as the nested "owner"/"taskOwner" object on
+    Contact and Task, but Agile CRM exposes NO user endpoint. A caller cannot list users to resolve
+    an owner_id — it must be read out of an object that already embeds it.
+relationships:
+- from: Contact
+  to: Contact
+  type: belongs_to
+  via: contact_company_id
+  note: A PERSON contact belongs to a COMPANY contact.
+- from: Contact
+  to: Property
+  type: has_many
+  via: properties
+- from: Deal
+  to: Contact
+  type: has_many
+  via: contact_ids
+  endpoint: GET /api/contacts/{id}/deals
+- from: Deal
+  to: Track
+  type: belongs_to
+  via: pipeline_id
+- from: Deal
+  to: User
+  type: belongs_to
+  via: owner_id
+- from: Deal
+  to: Note
+  type: has_many
+  via: /api/opportunity/{deal_id}/notes
+  endpoint: GET /api/opportunity/{deal_id}/notes
+- from: Note
+  to: Contact
+  type: has_many
+  via: contact_json
+  endpoint: GET /api/contacts/{contact_id}/notes
+- from: Task
+  to: Contact
+  type: has_many
+  via: contacts
+  endpoint: GET /api/contacts/{contact_id}/tasks/sort
+- from: Task
+  to: Note
+  type: has_many
+  via: notes
+- from: Task
+  to: User
+  type: belongs_to
+  via: owner_id
+- from: Event
+  to: Contact
+  type: has_many
+  via: contacts
+  endpoint: GET /api/contacts/{contact_id}/events/sort
+- from: Track
+  to: Deal
+  type: has_many
+  via: pipeline_id (inverse)
+  endpoint: GET /api/opportunity/byPipeline/based
+- from: Document
+  to: Contact
+  type: belongs_to
+  via: contact_id
+  endpoint: GET /api/documents/contact/{contact_id}/docs
+- from: Ticket
+  to: Note
+  type: has_many
+  via: /api/tickets/notes/{ticket_id}
+  endpoint: GET /api/tickets/notes/{ticket_id}
+- from: Campaign
+  to: Contact
+  type: has_many
+  via: enrolment
+  endpoint: POST /api/campaigns/enroll/email
+summary:
+  entities: 11
+  relationships: 15
+  json_schema_published: false
+  id_prefixes: false

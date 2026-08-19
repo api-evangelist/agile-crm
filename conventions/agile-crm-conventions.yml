@@ -1,0 +1,135 @@
+generated: '2026-08-13'
+method: searched
+source: https://github.com/agilecrm/rest-api/blob/master/README.md ("Things to know", per-endpoint paging notes)
+description: >-
+  Cross-cutting runtime semantics for the Agile CRM REST API, read from the vendor's own REST API
+  documentation. This is an early-2010s App Engine API and its conventions reflect that: HTTP Basic
+  auth, XML as the DEFAULT response format, opaque datastore cursors for paging, form-encoded bodies
+  on several read endpoints, and no idempotency, no versioning and no rate-limit signalling of any
+  kind.
+auth:
+  style: http-basic
+  username: account email address
+  password: REST client API key (Admin Settings > API & Analytics > API Key, the FIRST key)
+  header: 'Authorization: Basic base64(email:apikey)'
+  transport: HTTPS only
+  oauth2: false
+  scopes: false
+  ref: authentication/agile-crm-authentication.yml
+  note: >-
+    A single long-lived credential per user with full account privileges. There is no token exchange,
+    no expiry, no refresh, no scoping and no per-integration credential, so an agent given this key
+    holds every permission its user holds, including delete.
+idempotency:
+  supported: false
+  header: null
+  scope: null
+  retention: null
+  note: >-
+    No idempotency key, no request-id echo, no conditional headers (ETag / If-Match / If-None-Match)
+    and no dedupe window are documented for any operation. Retrying a POST /api/contacts,
+    POST /api/opportunity or POST /api/tasks after a timeout will create a duplicate record. This is
+    the single largest agent-safety gap in the API: writes are not safely retryable.
+    NO type Idempotency POINTER IS EMITTED — the provider does not support it.
+pagination:
+  style: opaque-cursor
+  supported_on:
+  - GET /api/contacts
+  - GET /api/opportunity
+  - GET /api/tasks
+  - GET /api/workflows
+  - POST /api/contacts/companies/list
+  - POST /api/filters/filter/dynamic-filter
+  request_params:
+  - name: page_size
+    location: query or form
+    description: Number of results to fetch in this page.
+  - name: cursor
+    location: query or form
+    description: Opaque App Engine datastore cursor marking where the next page starts.
+  - name: global_sort_key
+    location: form
+    description: >-
+      Sort field for the form-encoded list endpoints, e.g. -created_time for newest first.
+  response:
+    count_field: >-
+      The total count is embedded in the FIRST item of the returned array, not in a wrapper object.
+    cursor_field: >-
+      The cursor for the next page is embedded in the LAST item of the returned array.
+    end_of_list_signal: >-
+      Absence of a cursor on the last item means the end of the list has been reached.
+  note: >-
+    There is no envelope. The response is a bare JSON array and the paging metadata is smuggled into
+    the first and last elements, so a client must inspect array members to page. Several list
+    endpoints (companies, dynamic filters, tasks) take page_size and cursor as
+    application/x-www-form-urlencoded FORM parameters on a POST rather than as query parameters on a
+    GET, so paging is not uniform across the API.
+content_negotiation:
+  default_response_format: application/xml
+  json_opt_in_header: 'Accept: application/json'
+  request_content_types:
+  - application/json
+  - application/x-www-form-urlencoded
+  note: >-
+    "By default, the response will be in XML format." JSON must be explicitly requested with an
+    Accept header on EVERY call. A client that omits Accept receives XML — an unusual default that
+    silently breaks naive JSON parsing.
+case_sensitivity:
+  enforced: true
+  note: >-
+    Called out explicitly in the vendor documentation: "All data is case-sensitive. Emails, names and
+    other values are case sensitive. For example, 'Test' and 'test' are considered two different
+    words." This applies to enum values (PERSON/COMPANY, SYSTEM/CUSTOM, HIGH/NORMAL/LOW,
+    YET_TO_START/IN_PROGRESS/COMPLETED), to tag names, and to the email used as the Basic auth
+    username.
+field_expansion:
+  supported: false
+  note: No sparse-fieldset, field-selection or expansion parameter is documented.
+metadata:
+  supported: false
+  note: >-
+    No free-form metadata bag. Extensibility is via typed contact properties (type CUSTOM) rather
+    than an arbitrary key/value map, and custom properties exist only on contacts and companies.
+request_tracing:
+  request_id_header: null
+  correlation_header: null
+  supported: false
+  note: No request-id or correlation header is documented on request or response.
+versioning:
+  scheme: path-segment
+  current: /dev
+  in_url: true
+  media_type_versioning: false
+  note: >-
+    The only version marker is the literal "/dev" path segment in the base URL
+    https://{domain}.agilecrm.com/dev. It is not a semantic version and has never been incremented.
+    There is no version header, no dated version pin and no second version to migrate to.
+  ref: lifecycle/agile-crm-lifecycle.yml
+error_envelope:
+  shape: none
+  status_only: true
+  statuses:
+  - 200
+  - 204
+  - 400
+  - 401
+  - 406
+  ref: errors/agile-crm-problem-types.yml
+  note: >-
+    Errors carry no documented body. 204 is overloaded to mean both "deleted" and "no such record".
+rate_limit_signalling:
+  headers: []
+  status_on_exhaustion: null
+  retry_after: false
+  ref: rate-limits/agile-crm-rate-limits.yml
+  note: >-
+    No X-RateLimit-*, no RateLimit-*, no Retry-After and no 429 appear anywhere in the vendor
+    documentation. A client has no runtime signal to throttle on.
+bulk_operations:
+  supported: true
+  operations:
+  - POST /api/opportunity/bulk (bulk delete deals)
+  - POST /api/contacts/notes/bulk (bulk delete notes)
+  note: >-
+    Both bulk endpoints are DELETES dispatched over POST with an array of ids, and both return 200.
+    There is no partial-failure report, so a caller cannot tell which ids in the batch were removed.

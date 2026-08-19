@@ -2,7 +2,9 @@ openapi: 3.1.0
 info:
   title: Agile CRM REST Campaigns HelpDesk API
   version: 1.0.0
-  description: HTTPS-only REST API for managing contacts, companies, deals (opportunities), campaigns, tasks, events, notes, tracks, tickets, and documents in Agile CRM. Authentication is HTTP Basic with account email as username and REST client API key as password.
+  description: HTTPS-only REST API for managing contacts, companies, deals (opportunities), campaigns, tasks, events, notes,
+    tracks, tickets, and documents in Agile CRM. Authentication is HTTP Basic with account email as username and REST client
+    API key as password.
   contact:
     name: Agile CRM
     url: https://www.agilecrm.com/api
@@ -18,7 +20,22 @@ security:
 tags:
 - name: HelpDesk
 paths:
-  /api/helpdesk/tickets:
+  /api/notes/{ticket_id}:
+    post:
+      tags:
+      - HelpDesk
+      summary: Add note to a ticket
+      parameters:
+      - name: ticket_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Note added
+      operationId: addTicketNote
+  /api/tickets/filter:
     get:
       tags:
       - HelpDesk
@@ -26,6 +43,17 @@ paths:
       responses:
         '200':
           description: Tickets
+      operationId: listTickets
+  /api/tickets/filters:
+    get:
+      tags:
+      - HelpDesk
+      summary: Get filter IDs
+      responses:
+        '200':
+          description: Filters
+      operationId: listTicketFilters
+  /api/tickets/new-ticket:
     post:
       tags:
       - HelpDesk
@@ -33,7 +61,23 @@ paths:
       responses:
         '200':
           description: Ticket created
-  /api/helpdesk/tickets/{id}:
+      operationId: createTicket
+  /api/tickets/notes/{ticket_id}:
+    get:
+      tags:
+      - HelpDesk
+      summary: Get ticket messages
+      parameters:
+      - name: ticket_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Messages
+      operationId: listTicketMessages
+  /api/tickets/{id}:
     delete:
       tags:
       - HelpDesk
@@ -43,34 +87,7 @@ paths:
       responses:
         '204':
           description: Ticket deleted
-  /api/helpdesk/filters:
-    get:
-      tags:
-      - HelpDesk
-      summary: Get filter IDs
-      responses:
-        '200':
-          description: Filters
-  /api/helpdesk/tickets/{id}/messages:
-    get:
-      tags:
-      - HelpDesk
-      summary: Get ticket messages
-      parameters:
-      - $ref: '#/components/parameters/Id'
-      responses:
-        '200':
-          description: Messages
-  /api/helpdesk/tickets/{id}/notes:
-    post:
-      tags:
-      - HelpDesk
-      summary: Add note to a ticket
-      parameters:
-      - $ref: '#/components/parameters/Id'
-      responses:
-        '200':
-          description: Note added
+      operationId: deleteTicket
 components:
   parameters:
     Id:

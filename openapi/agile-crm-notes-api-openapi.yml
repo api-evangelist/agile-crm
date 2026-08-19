@@ -2,7 +2,9 @@ openapi: 3.1.0
 info:
   title: Agile CRM REST Campaigns Notes API
   version: 1.0.0
-  description: HTTPS-only REST API for managing contacts, companies, deals (opportunities), campaigns, tasks, events, notes, tracks, tickets, and documents in Agile CRM. Authentication is HTTP Basic with account email as username and REST client API key as password.
+  description: HTTPS-only REST API for managing contacts, companies, deals (opportunities), campaigns, tasks, events, notes,
+    tracks, tickets, and documents in Agile CRM. Authentication is HTTP Basic with account email as username and REST client
+    API key as password.
   contact:
     name: Agile CRM
     url: https://www.agilecrm.com/api
@@ -18,14 +20,6 @@ security:
 tags:
 - name: Notes
 paths:
-  /api/notes:
-    post:
-      tags:
-      - Notes
-      summary: Create a note and relate to contacts
-      responses:
-        '200':
-          description: Note created
   /api/contacts/email/note/add:
     post:
       tags:
@@ -34,6 +28,16 @@ paths:
       responses:
         '200':
           description: Note added
+      operationId: addNoteByEmail
+  /api/contacts/notes/bulk:
+    post:
+      tags:
+      - Notes
+      summary: Bulk delete notes
+      responses:
+        '200':
+          description: Notes deleted
+      operationId: bulkDeleteNotes
   /api/contacts/{contact_id}/notes:
     get:
       tags:
@@ -44,6 +48,7 @@ paths:
       responses:
         '200':
           description: Notes
+      operationId: listContactNotes
   /api/contacts/{contact_id}/notes/{note_id}:
     delete:
       tags:
@@ -59,6 +64,16 @@ paths:
       responses:
         '204':
           description: Deleted
+      operationId: deleteContactNote
+  /api/notes:
+    post:
+      tags:
+      - Notes
+      summary: Create a note and relate to contacts
+      responses:
+        '200':
+          description: Note created
+      operationId: createNote
   /api/opportunity/deals/notes:
     post:
       tags:
@@ -67,6 +82,7 @@ paths:
       responses:
         '200':
           description: Note created
+      operationId: createDealNote
     put:
       tags:
       - Notes
@@ -74,6 +90,7 @@ paths:
       responses:
         '200':
           description: Note updated
+      operationId: updateDealNote
   /api/opportunity/{deal_id}/notes:
     get:
       tags:
@@ -88,14 +105,7 @@ paths:
       responses:
         '200':
           description: Notes
-  /api/contacts/notes/bulk:
-    post:
-      tags:
-      - Notes
-      summary: Bulk delete notes
-      responses:
-        '200':
-          description: Notes deleted
+      operationId: listDealNotes
 components:
   parameters:
     ContactId:
