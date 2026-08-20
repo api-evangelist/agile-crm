@@ -27,6 +27,13 @@ tags:
   - CRM
   - Sales Automation
   - Marketing Automation
+  - Help Desk
+  - Small Business
+  - Contact Management
+tags_raw:
+  - CRM
+  - Sales Automation
+  - Marketing Automation
   - Helpdesk
   - Small Business
   - Contact Management
@@ -45,6 +52,13 @@ apis:
   humanURL: https://www.agilecrm.com/api
   baseURL: https://{domain}.agilecrm.com/dev
   tags:
+  - Contacts
+  - Companies
+  - Deals
+  - Campaigns
+  - Task
+  - Tickets
+  tags_raw:
   - Contacts
   - Companies
   - Deals
@@ -126,6 +140,8 @@ apis:
   humanURL: https://www.agilecrm.com/api
   baseURL: https://{domain}.agilecrm.com/dev
   tags:
+  - Event
+  tags_raw:
   - Events
   properties:
   - type: OpenAPI
@@ -138,6 +154,8 @@ apis:
   humanURL: https://www.agilecrm.com/api
   baseURL: https://{domain}.agilecrm.com/dev
   tags:
+  - Help Desk
+  tags_raw:
   - HelpDesk
   properties:
   - type: OpenAPI
@@ -162,6 +180,8 @@ apis:
   humanURL: https://www.agilecrm.com/api
   baseURL: https://{domain}.agilecrm.com/dev
   tags:
+  - Task
+  tags_raw:
   - Tasks
   properties:
   - type: OpenAPI
