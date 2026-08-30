@@ -39,7 +39,7 @@ tags:
   - CRM
   - Sales Automation
   - Marketing Automation
-  - Help Desk
+  - Helpdesk
   - Small Business
   - Contact Management
 tags_raw:
@@ -166,7 +166,7 @@ apis:
   humanURL: https://www.agilecrm.com/api
   baseURL: https://{domain}.agilecrm.com/dev
   tags:
-  - Help Desk
+  - HelpDesk
   tags_raw:
   - HelpDesk
   properties:
