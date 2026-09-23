@@ -1,16 +1,7 @@
 {
   "provider": "agile-crm",
   "sources": [
-    "agile-crm-campaigns-api-openapi.yml",
-    "agile-crm-companies-api-openapi.yml",
-    "agile-crm-contacts-api-openapi.yml",
-    "agile-crm-deals-api-openapi.yml",
-    "agile-crm-documents-api-openapi.yml",
-    "agile-crm-events-api-openapi.yml",
-    "agile-crm-helpdesk-api-openapi.yml",
-    "agile-crm-notes-api-openapi.yml",
-    "agile-crm-tasks-api-openapi.yml",
-    "agile-crm-tracks-api-openapi.yml"
+    "_original/agile-crm-openapi.yml"
   ],
   "outputs": [
     "agile-crm-campaigns-api-openapi.yml",
@@ -27,6 +18,21 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "agile-crm-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "agile-crm-campaigns-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "agile-crm-companies-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "agile-crm-contacts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "agile-crm-deals-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "agile-crm-documents-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "agile-crm-events-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "agile-crm-helpdesk-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "agile-crm-notes-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "agile-crm-tasks-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "agile-crm-tracks-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
