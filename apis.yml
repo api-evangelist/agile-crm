@@ -217,6 +217,9 @@ apis:
   - type: Overlay
     url: overlays/agile-crm-tracks-overlay.yaml
 common:
+  - type: CapabilityMap
+    url: capabilities/agile-crm-capability-edges.yml
+    name: Agile CRM Business Capability Map
   - type: AgenticAccess
     url: agentic-access/agile-crm-agentic-access.yml
   - type: DomainSecurity

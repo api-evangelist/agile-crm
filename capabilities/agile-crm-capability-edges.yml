@@ -1,0 +1,69 @@
+slug: agile-crm
+provider: Agile CRM
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 5
+edges:
+- tag: Deals
+  spec_file: agile-crm-deals-api-openapi.yml
+  capability_id: BC-410.30
+  capability_id_l1: BC-410
+  capability_name: Opportunity & Pipeline Management
+  confidence: 0.95
+  evidence: POST /api/opportunity — "Create a deal"; GET /api/opportunity/byMilestone — "Get deals grouped
+    by milestone"; GET /api/opportunity/byPipeline/based — "Retrieve deals by pipeline"
+  reason: The endpoints create, update and query opportunities by pipeline, milestone and track — textbook
+    deal/opportunity and pipeline lifecycle management. No other reading fits.
+- tag: HelpDesk
+  spec_file: agile-crm-helpdesk-api-openapi.yml
+  capability_id: BC-430.10
+  capability_id_l1: BC-430
+  capability_name: Customer Inquiry Management
+  confidence: 0.85
+  evidence: POST /api/tickets/new-ticket — "Create a ticket"; GET /api/tickets/filter — "Retrieve all
+    tickets"; GET /api/tickets/notes/{ticket_id} — "Get ticket messages"
+  reason: Ticket creation, retrieval, notes and messages in a CRM whose description names "helpdesk ticketing"
+    — inbound customer contact capture and resolution. Could arguably include complaint handling, hence
+    0.85 rather than higher on the L2.
+- tag: Campaigns
+  spec_file: agile-crm-campaigns-api-openapi.yml
+  capability_id: BC-400
+  capability_id_l1: BC-400
+  capability_name: Marketing Management
+  confidence: 0.8
+  evidence: POST /api/campaigns/enroll/email — "Add a contact to a campaign"; GET /api/workflows — "List
+    campaigns (workflows)"; "marketing automation", "email campaigns"
+  reason: Operations enroll and un-enroll contacts in marketing campaign workflows, which is marketing
+    campaign execution/automation. Clearly Marketing Management at L1, but the evidence does not distinguish
+    demand-generation campaigns from digital marketing automation, so no L2 is asserted.
+- tag: Contacts
+  spec_file: agile-crm-contacts-api-openapi.yml
+  capability_id: BC-420.10
+  capability_id_l1: BC-420
+  capability_name: Customer Data Management
+  confidence: 0.8
+  evidence: POST /api/contacts — "Create a new contact (or company when type is COMPANY)"; POST /api/contacts/add/property
+    — "Update a single contact property"; PUT /api/contacts/edit/tags — "Add tags to a contact"
+  reason: Full CRUD plus property, tag and ownership maintenance over contact records — the customer master
+    record of the CRM. Some operations (lead score, change owner) lean towards sales operations, but the
+    dominant surface is customer/contact data stewardship.
+- tag: Tracks
+  spec_file: agile-crm-tracks-api-openapi.yml
+  capability_id: BC-410.30
+  capability_id_l1: BC-410
+  capability_name: Opportunity & Pipeline Management
+  confidence: 0.72
+  evidence: GET /api/milestone/pipelines  listTracks  List tracks; 'deals (opportunities), campaigns'
+    in the spec description
+  reason: In Agile CRM a 'track' is a deal milestone pipeline — the endpoints are literally /api/milestone/pipelines,
+    i.e. CRUD over sales pipelines used to stage opportunities. That is opportunity/pipeline structure
+    management, not a generic tracking utility.
