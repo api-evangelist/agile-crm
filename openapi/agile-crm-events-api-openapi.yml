@@ -69,14 +69,14 @@ paths:
       operationId: deleteEvent
 components:
   parameters:
-    ContactId:
-      name: contact_id
+    Id:
+      name: id
       in: path
       required: true
       schema:
         type: string
-    Id:
-      name: id
+    ContactId:
+      name: contact_id
       in: path
       required: true
       schema:
