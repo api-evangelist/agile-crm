@@ -151,3 +151,39 @@ related_offer:
     A site-wide banner on the Agile CRM pricing page promotes the 500apps bundle — 38+ apps for
     $14.99/user with no tiered plans. Recorded because it is on Agile CRM's own pricing page, but it
     is a different product from the Agile CRM plans above.
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - free
+  - subscription
+  units: []
+  plans:
+  - name: Free
+    access: other
+    model: free
+    model_how: derived
+    units: []
+    periods:
+    - month
+  - name: Starter
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods:
+    - month
+  - name: Regular
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods:
+    - month
+  - name: Enterprise
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods:
+    - month
