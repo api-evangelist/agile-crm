@@ -4,6 +4,7 @@ source:
 - https://zapier.com/apps/agile-crm/integrations
 - https://n8n.io/integrations/agile-crm/
 checked:
+- freshbooks/integrations/freshbooks-integration-edges.yml
 - https://composio.dev/toolkits/agile-crm
 - https://monid.ai/tools/agile-crm
 - https://n8n.io/integrations/agile-crm/
@@ -1152,6 +1153,23 @@ edges:
   direction: third-party
   category: Customer Support
   partner_url: https://www.botstar.com/
+- partner_name: FreshBooks (own)
+  partner: freshbooks
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://appstore.freshbooks.com/apps/agile-crm
+  mirror_of: freshbooks/integrations/freshbooks-integration-edges.yml
+  apps:
+  - Agile CRM
+  listing_count: 1
+  detected: '2026-10-14'
+  detected_by: mirror-platform-listings.py
+  category: Nurture Customers
 templates:
 - title: Add new Mailchimp subscribers to Agile CRM contacts
   url: https://zapier.com/apps/agile-crm/integrations/mailchimp/3993/add-new-mailchimp-subscribers-to-agile-crm-contacts
