@@ -415,7 +415,7 @@
     app_slug: agile-crm
     beta: false
     builder: unknown (not in the directory record)
-  status: pending-generation
+  status: not-a-workflow
   arazzo: null
 - slug: agile-crm-n8n
   label: n8n
@@ -440,7 +440,7 @@
     node_path: AgileCrm
     trigger: false
     builder: n8n (built-in node)
-  status: pending-generation
+  status: not-a-workflow
   arazzo: null
 - slug: agile-crm-wordpress-own
   label: WordPress (own)
