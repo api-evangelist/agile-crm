@@ -9,6 +9,7 @@ checked:
 - https://monid.ai/tools/agile-crm
 - https://n8n.io/integrations/agile-crm/
 - https://zapier.com/apps/agile-crm/integrations
+- wordpress/integrations/wordpress-integration-edges.yml
 summary: null
 marketplace_apps:
 - marketplace: zapier
@@ -1170,6 +1171,23 @@ edges:
   detected: '2026-10-14'
   detected_by: mirror-platform-listings.py
   category: Nurture Customers
+- partner_name: WordPress (own)
+  partner: wordpress
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://wordpress.org/plugins/agile-crm-contact-form-7-forms/
+  mirror_of: wordpress/integrations/wordpress-integration-edges.yml
+  apps:
+  - Agile CRM Contact Form 7 Forms
+  listing_count: 1
+  detected: '2026-10-15'
+  detected_by: mirror-platform-listings.py
+  category: WordPress plugin
 templates:
 - title: Add new Mailchimp subscribers to Agile CRM contacts
   url: https://zapier.com/apps/agile-crm/integrations/mailchimp/3993/add-new-mailchimp-subscribers-to-agile-crm-contacts
