@@ -15,6 +15,7 @@
   evidence: https://zapier.com/apps/agile-crm/integrations/mailchimp/3993/add-new-mailchimp-subscribers-to-agile-crm-contacts
   template: https://zapier.com/apps/agile-crm/integrations/mailchimp/3993/add-new-mailchimp-subscribers-to-agile-crm-contacts
   source: template
+  relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
 - slug: agile-crm-update-agile-crm-contacts-from-new-typeform-entries
@@ -29,6 +30,7 @@
   evidence: https://zapier.com/apps/agile-crm/integrations/typeform/3976/update-agile-crm-contacts-from-new-typeform-entries
   template: https://zapier.com/apps/agile-crm/integrations/typeform/3976/update-agile-crm-contacts-from-new-typeform-entries
   source: template
+  relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
 - slug: agile-crm-create-new-agile-crm-contacts-from-new-unbounce-form-submissions
@@ -43,6 +45,7 @@
   evidence: https://zapier.com/apps/agile-crm/integrations/unbounce/3005/create-new-agile-crm-contacts-from-new-unbounce-form-submissions
   template: https://zapier.com/apps/agile-crm/integrations/unbounce/3005/create-new-agile-crm-contacts-from-new-unbounce-form-submissions
   source: template
+  relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
 - slug: agile-crm-add-a-new-agile-crm-deals-for-new-botstar-checkpoint-records
@@ -56,6 +59,7 @@
   evidence: https://zapier.com/apps/agile-crm/integrations/botstar/39255/add-a-new-agile-crm-deals-for-new-botstar-checkpoint-records
   template: https://zapier.com/apps/agile-crm/integrations/botstar/39255/add-a-new-agile-crm-deals-for-new-botstar-checkpoint-records
   source: template
+  relationship: ipaas-bridge
   status: pending-partner-spec
   arazzo: null
 - slug: agile-crm-add-tags-to-agile-crm-contacts-from-mailchimp-unsubscribers
@@ -70,314 +74,8 @@
   evidence: https://zapier.com/apps/agile-crm/integrations/mailchimp/3977/add-tags-to-agile-crm-contacts-from-mailchimp-unsubscribers
   template: https://zapier.com/apps/agile-crm/integrations/mailchimp/3977/add-tags-to-agile-crm-contacts-from-mailchimp-unsubscribers
   source: template
+  relationship: ipaas-bridge
   status: pending-generation
-  arazzo: null
-- slug: agile-crm-twilio
-  label: Twilio
-  partner: twilio
-  partner_name: Twilio
-  category: Phone & SMS
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/agile-crm/integrations/twilio
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: agile-crm-kartra
-  label: Kartra
-  partner: kartra
-  partner_name: Kartra
-  category: Marketing Automation
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/agile-crm/integrations/kartra
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: agile-crm-wpforms
-  label: WPForms
-  partner_name: WPForms
-  category: Forms & Surveys
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/agile-crm/integrations/wpforms
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: agile-crm-wufoo
-  label: Wufoo
-  partner: wufoo
-  partner_name: Wufoo
-  category: Forms & Surveys
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/agile-crm/integrations/wufoo
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: agile-crm-activecampaign
-  label: ActiveCampaign
-  partner: activecampaign
-  partner_name: ActiveCampaign
-  category: Marketing Automation
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/agile-crm/integrations/activecampaign
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: agile-crm-oncehub
-  label: OnceHub
-  partner_name: OnceHub
-  category: Scheduling & Booking
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/agile-crm/integrations/oncehub
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: agile-crm-hubspot
-  label: HubSpot
-  partner: hubspot
-  partner_name: HubSpot
-  category: Marketing Automation
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/agile-crm/integrations/hubspot
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: agile-crm-mailshake
-  label: Mailshake
-  partner_name: Mailshake
-  category: Drip Emails
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/agile-crm/integrations/mailshake
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: agile-crm-intercom
-  label: Intercom
-  partner: intercom
-  partner_name: Intercom
-  category: Customer Support
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/agile-crm/integrations/intercom
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: agile-crm-asana
-  label: Asana
-  partner: asana
-  partner_name: Asana
-  category: Project Management
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/agile-crm/integrations/asana
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: agile-crm-wix
-  label: Wix
-  partner: wix
-  partner_name: Wix
-  category: Website Builders
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/agile-crm/integrations/wix
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: agile-crm-aweber
-  label: AWeber
-  partner: aweber
-  partner_name: AWeber
-  category: Email Newsletters
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/agile-crm/integrations/aweber
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: agile-crm-freshdesk
-  label: Freshdesk
-  partner: freshdesk
-  partner_name: Freshdesk
-  category: Customer Support
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/agile-crm/integrations/freshdesk
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: agile-crm-shipstation
-  label: ShipStation
-  partner: shipstation
-  partner_name: ShipStation
-  category: eCommerce
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/agile-crm/integrations/shipstation
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: agile-crm-ebay
-  label: eBay
-  partner: ebay
-  partner_name: eBay
-  category: eCommerce
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/agile-crm/integrations/ebay
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: agile-crm-wave
-  label: Wave
-  partner: wave-financial
-  partner_name: Wave
-  category: Accounting
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/agile-crm/integrations/wave
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: agile-crm-dropbox
-  label: Dropbox
-  partner: dropbox
-  partner_name: Dropbox
-  category: File Management & Storage
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/agile-crm/integrations/dropbox
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: agile-crm-sansan
-  label: Sansan
-  partner: sansan
-  partner_name: Sansan
-  category: Contact Management
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/agile-crm/integrations/sansan
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: agile-crm-calendly
-  label: Calendly
-  partner: calendly
-  partner_name: Calendly
-  category: Scheduling & Booking
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/agile-crm/integrations/calendly
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: agile-crm-callrail
-  label: CallRail
-  partner: callrail
-  partner_name: CallRail
-  category: Call Tracking
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/agile-crm/integrations/callrail
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: agile-crm-ringcentral
-  label: RingCentral
-  partner: ringcentral
-  partner_name: RingCentral
-  category: Phone & SMS
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/agile-crm/integrations/ringcentral
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: agile-crm-todoist
-  label: Todoist
-  partner: todoist
-  partner_name: Todoist
-  category: Task Management
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/agile-crm/integrations/todoist
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: agile-crm-drip
-  label: Drip
-  partner: drip
-  partner_name: Drip
-  category: Drip Emails
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/agile-crm/integrations/drip
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: agile-crm-stripe
-  label: Stripe
-  partner: stripe
-  partner_name: Stripe
-  category: Payment Processing
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/agile-crm/integrations/stripe
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: agile-crm-clickdesk
-  label: ClickDesk
-  partner_name: ClickDesk
-  category: Customer Support
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/agile-crm/integrations/clickdesk
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: agile-crm-dealfront
-  label: Dealfront
-  partner_name: Dealfront
-  category: Sales & CRM
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/agile-crm/integrations/dealfront
-  source: edge
-  status: pending-partner-spec
   arazzo: null
 - slug: agile-crm-freshbooks-own
   label: FreshBooks (own)
@@ -513,4 +211,337 @@
     trigger: false
     builder: n8n (built-in node)
   status: not-a-workflow
+  arazzo: null
+- slug: agile-crm-twilio
+  label: Twilio
+  partner: twilio
+  partner_name: Twilio
+  category: Phone & SMS
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/agile-crm/integrations/twilio
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: agile-crm-kartra
+  label: Kartra
+  partner: kartra
+  partner_name: Kartra
+  category: Marketing Automation
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/agile-crm/integrations/kartra
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: agile-crm-wpforms
+  label: WPForms
+  partner_name: WPForms
+  category: Forms & Surveys
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/agile-crm/integrations/wpforms
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: agile-crm-wufoo
+  label: Wufoo
+  partner: wufoo
+  partner_name: Wufoo
+  category: Forms & Surveys
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/agile-crm/integrations/wufoo
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: agile-crm-activecampaign
+  label: ActiveCampaign
+  partner: activecampaign
+  partner_name: ActiveCampaign
+  category: Marketing Automation
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/agile-crm/integrations/activecampaign
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: agile-crm-oncehub
+  label: OnceHub
+  partner_name: OnceHub
+  category: Scheduling & Booking
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/agile-crm/integrations/oncehub
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: agile-crm-hubspot
+  label: HubSpot
+  partner: hubspot
+  partner_name: HubSpot
+  category: Marketing Automation
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/agile-crm/integrations/hubspot
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: agile-crm-mailshake
+  label: Mailshake
+  partner_name: Mailshake
+  category: Drip Emails
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/agile-crm/integrations/mailshake
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: agile-crm-intercom
+  label: Intercom
+  partner: intercom
+  partner_name: Intercom
+  category: Customer Support
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/agile-crm/integrations/intercom
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: agile-crm-asana
+  label: Asana
+  partner: asana
+  partner_name: Asana
+  category: Project Management
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/agile-crm/integrations/asana
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: agile-crm-wix
+  label: Wix
+  partner: wix
+  partner_name: Wix
+  category: Website Builders
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/agile-crm/integrations/wix
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: agile-crm-aweber
+  label: AWeber
+  partner: aweber
+  partner_name: AWeber
+  category: Email Newsletters
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/agile-crm/integrations/aweber
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: agile-crm-freshdesk
+  label: Freshdesk
+  partner: freshdesk
+  partner_name: Freshdesk
+  category: Customer Support
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/agile-crm/integrations/freshdesk
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: agile-crm-shipstation
+  label: ShipStation
+  partner: shipstation
+  partner_name: ShipStation
+  category: eCommerce
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/agile-crm/integrations/shipstation
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: agile-crm-ebay
+  label: eBay
+  partner: ebay
+  partner_name: eBay
+  category: eCommerce
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/agile-crm/integrations/ebay
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: agile-crm-wave
+  label: Wave
+  partner: wave-financial
+  partner_name: Wave
+  category: Accounting
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/agile-crm/integrations/wave
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: agile-crm-dropbox
+  label: Dropbox
+  partner: dropbox
+  partner_name: Dropbox
+  category: File Management & Storage
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/agile-crm/integrations/dropbox
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: agile-crm-sansan
+  label: Sansan
+  partner: sansan
+  partner_name: Sansan
+  category: Contact Management
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/agile-crm/integrations/sansan
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: agile-crm-calendly
+  label: Calendly
+  partner: calendly
+  partner_name: Calendly
+  category: Scheduling & Booking
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/agile-crm/integrations/calendly
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: agile-crm-callrail
+  label: CallRail
+  partner: callrail
+  partner_name: CallRail
+  category: Call Tracking
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/agile-crm/integrations/callrail
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: agile-crm-ringcentral
+  label: RingCentral
+  partner: ringcentral
+  partner_name: RingCentral
+  category: Phone & SMS
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/agile-crm/integrations/ringcentral
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: agile-crm-todoist
+  label: Todoist
+  partner: todoist
+  partner_name: Todoist
+  category: Task Management
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/agile-crm/integrations/todoist
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: agile-crm-drip
+  label: Drip
+  partner: drip
+  partner_name: Drip
+  category: Drip Emails
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/agile-crm/integrations/drip
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: agile-crm-stripe
+  label: Stripe
+  partner: stripe
+  partner_name: Stripe
+  category: Payment Processing
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/agile-crm/integrations/stripe
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: agile-crm-clickdesk
+  label: ClickDesk
+  partner_name: ClickDesk
+  category: Customer Support
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/agile-crm/integrations/clickdesk
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: agile-crm-leadfeeder
+  label: Leadfeeder
+  partner_name: Leadfeeder
+  category: Marketing
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/agile-crm/integrations/leadfeeder
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
   arazzo: null
